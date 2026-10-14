@@ -13,12 +13,11 @@
   <meta name="application-name" content="26년 삿포로 U.Sung Family" />
   <meta name="theme-color" content="#4338ca" />
   
-  <!-- 🌟 첨부해주신 [삿포로 블랙 원형 + 골드 스타 + SAPPORO 텍스트] 정밀 벡터 앱 아이콘 (V 로고 방지) -->
+  <!-- 삿포로 블랙 원형 + 골드 스타 + SAPPORO 텍스트 정밀 벡터 앱 아이콘 -->
   <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23ffffff'/%3E%3Ccircle cx='256' cy='210' r='145' fill='%23000000'/%3E%3Cpolygon points='256,105 280,178 355,180 295,223 316,295 256,252 196,295 217,223 157,180 232,178' fill='%23f59e0b'/%3E%3Ctext x='256' y='440' font-family='serif,Arial' font-size='74' font-weight='900' text-anchor='middle' fill='%23000000' letter-spacing='4'%3ESAPPORO%3C/text%3E%3C/svg%3E" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23ffffff'/%3E%3Ccircle cx='256' cy='210' r='145' fill='%23000000'/%3E%3Cpolygon points='256,105 280,178 355,180 295,223 316,295 256,252 196,295 217,223 157,180 232,178' fill='%23f59e0b'/%3E%3Ctext x='256' y='440' font-family='serif,Arial' font-size='74' font-weight='900' text-anchor='middle' fill='%23000000' letter-spacing='4'%3ESAPPORO%3C/text%3E%3C/svg%3E" />
   <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23ffffff'/%3E%3Ccircle cx='256' cy='210' r='145' fill='%23000000'/%3E%3Cpolygon points='256,105 280,178 355,180 295,223 316,295 256,252 196,295 217,223 157,180 232,178' fill='%23f59e0b'/%3E%3Ctext x='256' y='440' font-family='serif,Arial' font-size='74' font-weight='900' text-anchor='middle' fill='%23000000' letter-spacing='4'%3ESAPPORO%3C/text%3E%3C/svg%3E" />
 
-  <!-- 🚀 PWA 웹 매니페스트 링크 (manifest.json 파일 연결) -->
   <link rel="manifest" href="/manifest.json" />
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -70,14 +69,14 @@
         <div class="flex items-center gap-2 mt-0.5">
           <p class="text-[9.5px] sm:text-[10.5px] text-indigo-200 font-medium leading-tight">10.15~10.19</p>
           <!-- 실시간 가족 연동 상태 뱃지 -->
-          <div id="syncStatusBadge" class="flex items-center gap-1 px-1.5 py-0.2 bg-indigo-800/80 border border-indigo-500/50 rounded-full text-[9px] font-bold text-indigo-200 cursor-pointer" onclick="showSyncInfoModal()" title="실시간 가족 연동 상태 설정 및 확인">
+          <div id="syncStatusBadge" class="flex items-center gap-1 px-1.5 py-0.5 bg-indigo-800/80 border border-indigo-500/50 rounded-full text-[9px] font-bold text-indigo-200 cursor-pointer" onclick="showSyncInfoModal()" title="실시간 가족 연동 상태 설정 및 확인">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block animate-pulse" id="syncStatusDot"></span>
             <span id="syncStatusText">연결 중...</span>
           </div>
         </div>
       </div>
 
-      <!-- 우측 영역: 번역 도구 (버튼 크기 확대 및 중앙 방향으로 여백 조정) -->
+      <!-- 우측 영역: 번역 도구 -->
       <div class="flex items-center justify-end gap-2 min-w-0 shrink-0 mr-1 sm:mr-2.5">
         <a href="https://papago.naver.com/?sk=ko&tk=ja" target="_blank" rel="noopener noreferrer" class="px-3 sm:px-3.5 py-1.5 bg-teal-500 hover:bg-teal-600 active:scale-95 text-white text-xs sm:text-[13px] font-extrabold rounded-lg shadow-sm flex items-center justify-center gap-1 transition shrink-0" title="네이버 파파고 번역 (한 ⇄ 일)">
           <span class="text-sm sm:text-base">🦜</span><span>파파고</span>
@@ -89,15 +88,15 @@
       </div>
     </div>
 
-    <!-- 메인 탭바 -->
-    <nav class="bg-white border-b border-slate-200 flex text-xs font-bold">
-      <button onclick="switchTab('itinerary')" id="tab-itinerary" class="flex-1 py-2.5 text-center text-indigo-700 border-b-2 border-indigo-700 font-black">
+    <!-- 메인 탭바 (글자 크기 확대: text-sm sm:text-base) -->
+    <nav class="bg-white border-b border-slate-200 flex text-sm sm:text-base font-bold">
+      <button onclick="switchTab('itinerary')" id="tab-itinerary" class="flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black text-sm sm:text-base transition-colors">
         🗓️ 일정
       </button>
-      <button onclick="switchTab('checklist')" id="tab-checklist" class="flex-1 py-2.5 text-center text-slate-500 border-b-2 border-transparent">
+      <button onclick="switchTab('checklist')" id="tab-checklist" class="flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent text-sm sm:text-base font-bold transition-colors">
         📋 체크리스트
       </button>
-      <button onclick="switchTab('budget')" id="tab-budget" class="flex-1 py-2.5 text-center text-slate-500 border-b-2 border-transparent">
+      <button onclick="switchTab('budget')" id="tab-budget" class="flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent text-sm sm:text-base font-bold transition-colors">
         💰 Budget (예산)
       </button>
     </nav>
@@ -122,7 +121,7 @@
     </div>
   </header>
 
-  <div id="contentContainer" class="pt-[145px]">
+  <div id="contentContainer" class="pt-[148px]">
 
     <!-- [섹션 1] 일정 -->
     <main id="itinerarySection" class="p-4 space-y-4 max-w-lg mx-auto">
@@ -587,10 +586,10 @@
             </g>
 
             <g transform="translate(160, 270)">
-              <circle cx="0" cy="0" r="10" fill="#d97706" stroke="#fff" stroke-width="2"/>
-              <text x="0" y="3.5" fill="#fff" font-size="8" font-weight="bold" text-anchor="middle">10</text>
-              <rect x="-105" y="-18" width="98" height="14" rx="3" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
-              <text x="-101" y="-8" fill="#b45309" font-size="7.5" font-weight="bold">⑩ 홀리데이 인 (호텔 복귀)</text>
+              <circle cx="0" cy="10" r="10" fill="#d97706" stroke="#fff" stroke-width="2"/>
+              <text x="0" y="13.5" fill="#fff" font-size="8" font-weight="bold" text-anchor="middle">10</text>
+              <rect x="-105" y="-8" width="98" height="14" rx="3" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+              <text x="-101" y="2" fill="#b45309" font-size="7.5" font-weight="bold">⑩ 홀리데이 인 (호텔 복귀)</text>
             </g>
           </svg>
         </div>
@@ -650,6 +649,61 @@
                 <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">6</span>
                 <div>
                   <div class="font-bold text-slate-800">도카치 부타돈 잇핀 (점심 식사)</div>
+                  <div class="text-[10px] text-emerald-700">스텔라플레이스 6층 또는 시내 지점 / 숯불 부타돈</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-emerald-700 font-bold border border-emerald-200">점심</span>
+            </div>
+
+            <div class="p-2 rounded-xl bg-white border border-slate-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-indigo-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">7</span>
+                <span class="font-bold text-slate-800">삿포로 맥주박물관 & 가든</span>
+              </div>
+              <span class="text-[10px] text-slate-400">붉은 벽돌 개척사 건물</span>
+            </div>
+
+            <div class="p-2 rounded-xl bg-white border border-slate-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-indigo-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">8</span>
+                <span class="font-bold text-slate-800">삿포로시 천문대 (나카지마 공원)</span>
+              </div>
+              <span class="text-[10px] text-slate-400">쇼부 연못 & 수변 힐링</span>
+            </div>
+
+            <div class="p-2 rounded-xl bg-emerald-50/70 border border-emerald-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">9</span>
+                <div>
+                  <div class="font-bold text-slate-800">니기리메시 (스스키노 간식)</div>
+                  <div class="text-[10px] text-emerald-700">24시간 수제 주먹밥 (크림치즈 명란 추천)</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-emerald-700 font-bold border border-emerald-200">간식</span>
+            </div>
+
+            <div class="p-2 rounded-xl bg-amber-50/70 border border-amber-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-amber-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">10</span>
+                <div>
+                  <div class="font-bold text-slate-800">홀리데이 인 삿포로 (호텔 복귀)</div>
+                  <div class="text-[10px] text-amber-800">오도리 인근 포트에 최종 반납 후 휴식</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-amber-800 font-bold border border-amber-200">도착</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-end">
+        <button onclick="closePorocleRouteModal()" class="w-full py-2.5 text-xs bg-indigo-600 hover:bg-indigo-700 active:scale-95 font-bold rounded-xl text-white shadow transition">
+          닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- 📡 실시간 연동 정보 및 Firebase 설정 모달 -->
   <div id="syncInfoModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm transition-opacity duration-200">
     <div class="bg-white rounded-3xl p-5 w-full max-w-sm space-y-4 shadow-2xl border border-indigo-100 max-h-[90vh] flex flex-col">
@@ -812,7 +866,7 @@
               <div class="bg-rose-50/50 p-2 rounded-lg mt-1 font-semibold text-slate-800 border border-rose-100">
                 1. 지정된 포트(Port)에 주차<br/>
                 2. 뒷바퀴 잠금 레버 내리기<br/>
-                3. 제어판 <span class="bg-rose-600 text-white px-1 py-0.2 rounded text-[10px] font-bold">RETURN</span> 버튼 클릭<br/>
+                3. 제어판 <span class="bg-rose-600 text-white px-1 py-0.5 rounded text-[10px] font-bold">RETURN</span> 버튼 클릭<br/>
                 <span class="text-emerald-700 font-extrabold">★ 초록색 불 점등 확인 필수!</span>
               </div>
             </div>
@@ -1113,49 +1167,10 @@
     알림 메시지
   </div>
 
-  <!-- 📡 실시간 연동 정보 모달 -->
-  <div id="syncInfoModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm transition-opacity duration-200">
-    <div class="bg-white rounded-3xl p-5 w-full max-w-sm space-y-4 shadow-2xl border border-indigo-100">
-      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-        <div class="flex items-center gap-2">
-          <div class="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg font-bold">
-            👨‍👩‍👦
-          </div>
-          <div>
-            <h3 class="font-bold text-base text-slate-800">가족 실시간 연동 상태</h3>
-            <p class="text-[11px] text-slate-400">온 가족 폰과 실시간 데이터 동기화</p>
-          </div>
-        </div>
-        <button onclick="closeSyncInfoModal()" class="text-slate-400 hover:text-slate-600 p-1 text-base font-bold">✕</button>
-      </div>
-
-      <div class="space-y-2.5 text-xs text-slate-600">
-        <div class="bg-indigo-50/70 p-3 rounded-2xl border border-indigo-100 space-y-1">
-          <div class="font-bold text-indigo-900 flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span>클라우드 동기화 활성화됨</span>
-          </div>
-          <p class="text-[11px] text-slate-600">한 폰에서 스팟 추가, 체크리스트 완료, 가계부 지출을 입력하면 모든 가족의 폰에 실시간으로 즉시 반영됩니다.</p>
-        </div>
-
-        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-          <span class="text-[10px] text-slate-400 block font-semibold">내 사용자 ID (고유 식별자)</span>
-          <span class="font-mono text-[11px] text-slate-700 break-all select-all font-bold" id="syncUserIdDisplay">확인 중...</span>
-        </div>
-      </div>
-
-      <div class="pt-1">
-        <button onclick="closeSyncInfoModal()" class="w-full py-2.5 text-xs bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition">
-          확인
-        </button>
-      </div>
-    </div>
-  </div>
-
   <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;" onchange="handlePhotoUpload(event)" />
   <input type="file" id="albumInput" accept="image/*" multiple style="display: none;" onchange="handlePhotoUpload(event)" />
 
-  <!-- Firebase SDK 모듈 로더 (실시간 클라우드 동기화 지원) -->
+  <!-- 1. Firebase SDK 모듈 로더 (독립 분리) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -1173,12 +1188,55 @@
       collection
     };
 
-    if (window.initCloudRealtimeSync) {
+    if (typeof window.initCloudRealtimeSync === 'function') {
       window.initCloudRealtimeSync();
     }
   </script>
 
+  <!-- 2. 전체 앱 로직 스크립트 -->
   <script>
+    /* ========================================================
+       1. 모달 제어 함수군 (팝업 열기 / 닫기)
+       ======================================================== */
+    function openAddCheckModal() { 
+      const modal = document.getElementById('addCheckModal');
+      if (modal) modal.classList.remove('hidden'); 
+    }
+    function closeAddCheckModal() { 
+      const modal = document.getElementById('addCheckModal');
+      if (modal) modal.classList.add('hidden');
+      const input = document.getElementById('checkItemText');
+      if (input) input.value = '';
+    }
+
+    function openAddSpotModal() { 
+      const modal = document.getElementById('addSpotModal');
+      if (modal) modal.classList.remove('hidden'); 
+    }
+    function closeAddSpotModal() { 
+      const modal = document.getElementById('addSpotModal');
+      if (modal) modal.classList.add('hidden');
+      const nameInput = document.getElementById('modalName');
+      const mapInput = document.getElementById('modalMapUrl');
+      const memoInput = document.getElementById('modalMemo');
+      if (nameInput) nameInput.value = '';
+      if (mapInput) mapInput.value = '';
+      if (memoInput) memoInput.value = '';
+    }
+
+    function openAddExpenseModal() { 
+      const modal = document.getElementById('addExpenseModal');
+      if (modal) modal.classList.remove('hidden'); 
+    }
+    function closeAddExpenseModal() {
+      const modal = document.getElementById('addExpenseModal');
+      if (modal) modal.classList.add('hidden');
+      const titleInput = document.getElementById('expTitle');
+      const amountInput = document.getElementById('expAmountJPY');
+      if (titleInput) titleInput.value = '';
+      if (amountInput) amountInput.value = '';
+    }
+
     function openEmergencyModal() {
       const modal = document.getElementById('emergencyModal');
       if (modal) modal.classList.remove('hidden');
@@ -1206,6 +1264,72 @@
       if (modal) modal.classList.add('hidden');
     }
 
+    function openSpotDetailModal(dayKey, spotId) {
+      const spots = dynamicSpots[dayKey] || [];
+      const spot = spots.find(s => s.id === spotId);
+      if (!spot) return;
+
+      const catBadge = document.getElementById('detailCategoryBadge');
+      const nameEl = document.getElementById('detailSpotName');
+      const bodyEl = document.getElementById('detailContentBody');
+      const mapBtn = document.getElementById('detailMapBtn');
+
+      const catText = spot.category === 'lunch' ? '🍱 점심 후보' : spot.category === 'dinner' ? '🍽️ 저녁 후보' : '📍 관광 / 카페';
+      if (catBadge) catBadge.innerText = catText;
+      if (nameEl) nameEl.innerText = spot.name;
+
+      const mapLink = spot.mapUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.name)}`;
+      if (mapBtn) mapBtn.href = mapLink;
+
+      let contentHtml = '';
+      if (spot.reason || spot.family) {
+        if (spot.reason) {
+          contentHtml += `
+            <div class="bg-indigo-50/70 p-3 rounded-2xl border border-indigo-100">
+              <div class="font-extrabold text-indigo-900 flex items-center gap-1 mb-1">
+                <span>🌟</span> 추천 이유
+              </div>
+              <p class="text-slate-700 leading-relaxed">${spot.reason}</p>
+            </div>
+          `;
+        }
+        if (spot.family) {
+          contentHtml += `
+            <div class="bg-amber-50/70 p-3 rounded-2xl border border-amber-100">
+              <div class="font-extrabold text-amber-900 flex items-center gap-1 mb-1">
+                <span>👨‍👩‍👦</span> 가족 편의 & 팁
+              </div>
+              <p class="text-slate-700 leading-relaxed">${spot.family}</p>
+            </div>
+          `;
+        }
+      } else if (spot.memo) {
+        contentHtml += `
+          <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+            <div class="font-extrabold text-slate-800 flex items-center gap-1 mb-1">
+              <span>📝</span> 등록된 메모 & 상세 안내
+            </div>
+            <p class="text-slate-700 leading-relaxed whitespace-pre-wrap">${spot.memo}</p>
+          </div>
+        `;
+      } else {
+        contentHtml += `
+          <div class="py-6 text-center text-slate-400 bg-slate-50 rounded-2xl border border-dashed">
+            등록된 상세 메모가 없습니다.<br>하단의 [📍 구글 지도 열기]로 현장 정보를 확인하세요.
+          </div>
+        `;
+      }
+
+      if (bodyEl) bodyEl.innerHTML = contentHtml;
+      const modal = document.getElementById('spotDetailModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeSpotDetailModal() {
+      const modal = document.getElementById('spotDetailModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
     function showToast(msg) {
       const toast = document.getElementById('appToast');
       if (!toast) return;
@@ -1227,31 +1351,42 @@
       const catHint = document.getElementById('confirmCategoryHint');
 
       if (type === 'check') {
-        iconBox.innerHTML = '📋';
-        typeBadge.innerText = '준비물 삭제';
-        typeBadge.className = 'text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800';
-        catHint.innerText = '체크리스트 준비물';
+        if (iconBox) iconBox.innerHTML = '📋';
+        if (typeBadge) {
+          typeBadge.innerText = '준비물 삭제';
+          typeBadge.className = 'text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800';
+        }
+        if (catHint) catHint.innerText = '체크리스트 준비물';
       } else if (type === 'expense') {
-        iconBox.innerHTML = '💰';
-        typeBadge.innerText = '지출 내역 삭제';
-        typeBadge.className = 'text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800';
-        catHint.innerText = '가계부 등록 지출';
+        if (iconBox) iconBox.innerHTML = '💰';
+        if (typeBadge) {
+          typeBadge.innerText = '지출 내역 삭제';
+          typeBadge.className = 'text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800';
+        }
+        if (catHint) catHint.innerText = '가계부 등록 지출';
       } else if (type === 'photo') {
-        iconBox.innerHTML = '📸';
-        typeBadge.innerText = '사진 삭제';
-        typeBadge.className = 'text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800';
-        catHint.innerText = '앨범 보관 사진';
+        if (iconBox) iconBox.innerHTML = '📸';
+        if (typeBadge) {
+          typeBadge.innerText = '사진 삭제';
+          typeBadge.className = 'text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800';
+        }
+        if (catHint) catHint.innerText = '앨범 보관 사진';
       } else {
-        iconBox.innerHTML = '📍';
-        typeBadge.innerText = '스팟 후보 삭제';
-        typeBadge.className = 'text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700';
-        catHint.innerText = '일정 스팟 / 맛집';
+        if (iconBox) iconBox.innerHTML = '📍';
+        if (typeBadge) {
+          typeBadge.innerText = '스팟 후보 삭제';
+          typeBadge.className = 'text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700';
+        }
+        if (catHint) catHint.innerText = '일정 스팟 / 맛집';
       }
 
-      document.getElementById('confirmDeleteItemName').innerText = titleText;
-      document.getElementById('confirmDeleteSub').innerText = subText || "삭제 후에는 목록에서 제거됩니다.";
+      const nameEl = document.getElementById('confirmDeleteItemName');
+      if (nameEl) nameEl.innerText = titleText;
+      const subEl = document.getElementById('confirmDeleteSub');
+      if (subEl) subEl.innerText = subText || "삭제 후에는 목록에서 제거됩니다.";
       pendingDeleteCallback = onConfirm;
-      document.getElementById('confirmDeleteModal').classList.remove('hidden');
+      const modal = document.getElementById('confirmDeleteModal');
+      if (modal) modal.classList.remove('hidden');
     }
 
     function closeConfirmModal() {
@@ -1270,6 +1405,9 @@
       };
     }
 
+    /* ========================================================
+       2. 체크리스트 데이터 및 제어 로직
+       ======================================================== */
     const defaultChecklistData = {
       docs: [
         "여권 (유효기간 6개월 이상 확인)",
@@ -1340,11 +1478,6 @@
       pushDataToCloud('checked_items', { checked: savedChecked });
     }
 
-    function openAddCheckModal() { document.getElementById('addCheckModal').classList.remove('hidden'); }
-    function closeAddCheckModal() { 
-      document.getElementById('addCheckModal').classList.add('hidden');
-      document.getElementById('checkItemText').value = '';
-    }
     function saveNewCheckItem() {
       const category = document.getElementById('checkCategory').value;
       const text = document.getElementById('checkItemText').value.trim();
@@ -1372,6 +1505,9 @@
       }, { type: 'check' });
     }
 
+    /* ========================================================
+       3. 예산 및 실시간 잔액 로직
+       ======================================================== */
     const initialBudget = [
       { id: "b1", date: "사전 결제", category: "항공/보험", title: "이스타항공 왕복 (3인) + 여행자보험", amountKRW: 1070420, amountJPY: 0, isFixed: true },
       { id: "b2", date: "사전 결제", category: "숙소", title: "홀리데이 인 삿포로 (10/15~17, 2박)", amountKRW: 430834, amountJPY: 0, isFixed: true },
@@ -1465,12 +1601,6 @@
       if (elJPY) elJPY.innerText = `¥${totalJPY.toLocaleString()}`;
     }
 
-    function openAddExpenseModal() { document.getElementById('addExpenseModal').classList.remove('hidden'); }
-    function closeAddExpenseModal() {
-      document.getElementById('addExpenseModal').classList.add('hidden');
-      document.getElementById('expTitle').value = '';
-      document.getElementById('expAmountJPY').value = '';
-    }
     function saveNewExpense() {
       const date = document.getElementById('expDate').value;
       const category = document.getElementById('expCategory').value;
@@ -1507,6 +1637,9 @@
       }, { type: 'expense' });
     }
 
+    /* ========================================================
+       4. 일정 및 스팟 동적 관리 로직
+       ======================================================== */
     const initialDefaultSpots = {
       'day-1': [
         { 
@@ -1915,84 +2048,6 @@
       localStorage.setItem('sapporo_dynamic_spots_v22', JSON.stringify(dynamicSpots));
     }
 
-    function openSpotDetailModal(dayKey, spotId) {
-      const spots = dynamicSpots[dayKey] || [];
-      const spot = spots.find(s => s.id === spotId);
-      if (!spot) return;
-
-      const catBadge = document.getElementById('detailCategoryBadge');
-      const nameEl = document.getElementById('detailSpotName');
-      const bodyEl = document.getElementById('detailContentBody');
-      const mapBtn = document.getElementById('detailMapBtn');
-
-      const catText = spot.category === 'lunch' ? '🍱 점심 후보' : spot.category === 'dinner' ? '🍽️ 저녁 후보' : '📍 관광 / 카페';
-      if (catBadge) catBadge.innerText = catText;
-      if (nameEl) nameEl.innerText = spot.name;
-
-      const mapLink = spot.mapUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.name)}`;
-      if (mapBtn) mapBtn.href = mapLink;
-
-      let contentHtml = '';
-
-      if (spot.reason || spot.family) {
-        if (spot.reason) {
-          contentHtml += `
-            <div class="bg-indigo-50/70 p-3 rounded-2xl border border-indigo-100">
-              <div class="font-extrabold text-indigo-900 flex items-center gap-1 mb-1">
-                <span>🌟</span> 추천 이유
-              </div>
-              <p class="text-slate-700 leading-relaxed">${spot.reason}</p>
-            </div>
-          `;
-        }
-        if (spot.family) {
-          contentHtml += `
-            <div class="bg-amber-50/70 p-3 rounded-2xl border border-amber-100">
-              <div class="font-extrabold text-amber-900 flex items-center gap-1 mb-1">
-                <span>👨‍👩‍👦</span> 가족 편의 & 팁
-              </div>
-              <p class="text-slate-700 leading-relaxed">${spot.family}</p>
-            </div>
-          `;
-        }
-      } else if (spot.memo) {
-        contentHtml += `
-          <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
-            <div class="font-extrabold text-slate-800 flex items-center gap-1 mb-1">
-              <span>📝</span> 등록된 메모 & 상세 안내
-            </div>
-            <p class="text-slate-700 leading-relaxed whitespace-pre-wrap">${spot.memo}</p>
-          </div>
-        `;
-      } else {
-        contentHtml += `
-          <div class="py-6 text-center text-slate-400 bg-slate-50 rounded-2xl border border-dashed">
-            등록된 상세 메모가 없습니다.<br>하단의 [📍 구글 지도 열기]로 현장 정보를 확인하세요.
-          </div>
-        `;
-      }
-
-      if (bodyEl) bodyEl.innerHTML = contentHtml;
-      const modal = document.getElementById('spotDetailModal');
-      if (modal) modal.classList.remove('hidden');
-    }
-
-    function closeSpotDetailModal() {
-      const modal = document.getElementById('spotDetailModal');
-      if (modal) modal.classList.add('hidden');
-    }
-
-    function openAddSpotModal() { document.getElementById('addSpotModal')?.classList.remove('hidden'); }
-    function closeAddSpotModal() { 
-      document.getElementById('addSpotModal')?.classList.add('hidden');
-      const nameInput = document.getElementById('modalName');
-      const mapInput = document.getElementById('modalMapUrl');
-      const memoInput = document.getElementById('modalMemo');
-      if (nameInput) nameInput.value = '';
-      if (mapInput) mapInput.value = '';
-      if (memoInput) memoInput.value = '';
-    }
-
     function saveNewSpot() {
       const dayKey = document.getElementById('modalDate').value;
       const category = document.getElementById('modalCategory').value;
@@ -2073,8 +2128,8 @@
           const catBadgeClass = s.category === 'lunch' ? 'bg-emerald-50 text-emerald-700' : s.category === 'dinner' ? 'bg-indigo-50 text-indigo-700' : 'bg-sky-50 text-sky-700';
 
           const targetUrl = s.mapUrl ? s.mapUrl : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.name)}`;
-          const walkUrl = s.mapUrl ? s.mapUrl : `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(s.name)}&travelmode=walking`;
-          const driveUrl = s.mapUrl ? s.mapUrl : `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(s.name)}&travelmode=driving`;
+          const walkUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(s.name)}&travelmode=walking`;
+          const driveUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(s.name)}&travelmode=driving`;
 
           const isFirst = idx === 0;
           const isLast = idx === spots.length - 1;
@@ -2260,6 +2315,9 @@
       window.removeEventListener('pointercancel', handlePointerUp);
     }
 
+    /* ========================================================
+       5. 사진 앨범 및 IndexedDB 로직
+       ======================================================== */
     let db;
     let currentSpotKey = "";
     let activeLightboxPhoto = null;
@@ -2279,13 +2337,26 @@
 
     function openGallery(spotKey, title) {
       currentSpotKey = spotKey;
-      document.getElementById('gallerySpotTitle').innerText = `📸 ${title}`;
-      document.getElementById('photoGalleryModal').classList.remove('hidden');
+      const titleEl = document.getElementById('gallerySpotTitle');
+      if (titleEl) titleEl.innerText = `📸 ${title}`;
+      const modal = document.getElementById('photoGalleryModal');
+      if (modal) modal.classList.remove('hidden');
       loadGalleryPhotos();
     }
-    function closeGalleryModal() { document.getElementById('photoGalleryModal').classList.add('hidden'); }
-    function triggerCameraInput() { document.getElementById('cameraInput').click(); }
-    function triggerAlbumInput() { document.getElementById('albumInput').click(); }
+
+    function closeGalleryModal() { 
+      const modal = document.getElementById('photoGalleryModal');
+      if (modal) modal.classList.add('hidden'); 
+    }
+
+    function triggerCameraInput() { 
+      const el = document.getElementById('cameraInput');
+      if (el) el.click(); 
+    }
+    function triggerAlbumInput() { 
+      const el = document.getElementById('albumInput');
+      if (el) el.click(); 
+    }
 
     function handlePhotoUpload(e) {
       const files = Array.from(e.target.files || []);
@@ -2314,6 +2385,7 @@
 
     function loadGalleryPhotos() {
       const grid = document.getElementById('galleryPhotoGrid');
+      if (!grid) return;
       grid.innerHTML = "";
       if (!db) return;
 
@@ -2347,16 +2419,16 @@
       const targetImg = document.getElementById('lightboxImgTarget');
       const timeText = document.getElementById('lightboxTimeText');
 
-      targetImg.src = photoObj.dataUrl;
+      if (targetImg) targetImg.src = photoObj.dataUrl;
       const formattedDate = photoObj.time ? new Date(photoObj.time).toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
-      timeText.innerText = formattedDate ? `촬영일시: ${formattedDate}` : '사진 상세 보기';
+      if (timeText) timeText.innerText = formattedDate ? `촬영일시: ${formattedDate}` : '사진 상세 보기';
 
-      modal.classList.remove('hidden');
+      if (modal) modal.classList.remove('hidden');
     }
 
     function closePhotoLightbox() {
       const modal = document.getElementById('photoLightboxModal');
-      modal.classList.add('hidden');
+      if (modal) modal.classList.add('hidden');
       activeLightboxPhoto = null;
     }
 
@@ -2407,6 +2479,9 @@
       };
     }
 
+    /* ========================================================
+       6. 탭 전환 & 날짜 필터링
+       ======================================================== */
     function switchTab(tab) {
       const secItin = document.getElementById('itinerarySection');
       const secCheck = document.getElementById('checklistSection');
@@ -2421,24 +2496,25 @@
       if (secCheck) secCheck.classList.add('hidden');
       if (secBudget) secBudget.classList.add('hidden');
 
+      // 탭 기본 비활성화 스타일 (text-sm sm:text-base 크기 유지)
       [tabItinBtn, tabCheckBtn, tabBudgetBtn].forEach(b => {
-        if (b) b.className = "flex-1 py-2.5 text-center text-slate-500 border-b-2 border-transparent";
+        if (b) b.className = "flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent text-sm sm:text-base font-bold transition-colors";
       });
 
       if (tab === 'itinerary') {
         if (secItin) secItin.classList.remove('hidden');
-        if (tabItinBtn) tabItinBtn.className = "flex-1 py-2.5 text-center text-indigo-700 border-b-2 border-indigo-700 font-black";
+        if (tabItinBtn) tabItinBtn.className = "flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black text-sm sm:text-base transition-colors";
         if (stickyDayBar) stickyDayBar.classList.remove('hidden');
-        document.getElementById('contentContainer').className = "pt-[145px]";
+        document.getElementById('contentContainer').className = "pt-[148px]";
       } else if (tab === 'checklist') {
         if (secCheck) secCheck.classList.remove('hidden');
-        if (tabCheckBtn) tabCheckBtn.className = "flex-1 py-2.5 text-center text-indigo-700 border-b-2 border-indigo-700 font-black";
+        if (tabCheckBtn) tabCheckBtn.className = "flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black text-sm sm:text-base transition-colors";
         if (stickyDayBar) stickyDayBar.classList.add('hidden');
         document.getElementById('contentContainer').className = "pt-[98px]";
         renderChecklist();
       } else if (tab === 'budget') {
         if (secBudget) secBudget.classList.remove('hidden');
-        if (tabBudgetBtn) tabBudgetBtn.className = "flex-1 py-2.5 text-center text-indigo-700 border-b-2 border-indigo-700 font-black";
+        if (tabBudgetBtn) tabBudgetBtn.className = "flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black text-sm sm:text-base transition-colors";
         if (stickyDayBar) stickyDayBar.classList.add('hidden');
         document.getElementById('contentContainer').className = "pt-[98px]";
         renderBudget();
@@ -2475,13 +2551,13 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    /* 🌐 클라우드 실시간 데이터베이스 연동 엔진 */
+    /* ========================================================
+       7. Firebase 실시간 클라우드 동기화
+       ======================================================== */
     let cloudDb = null;
     let cloudAuth = null;
     let cloudUser = null;
-    let isRemoteUpdate = false;
 
-    // ★ 발급받으신 Firebase Config를 직접 내장하여 설치된 앱에서도 즉시 전 가족 자동 연동됩니다!
     const HARDCODED_FIREBASE_CONFIG = {
       apiKey: "AIzaSyDxoqjo_bUH-TzAeQlJgUJT3xA-oFh_WbY",
       authDomain: "sapporo-travel-2026.firebaseapp.com",
@@ -2491,13 +2567,12 @@
       appId: "1:359701596449:web:cd350b716c21ea0d1f1660"
     };
 
-    const appId = typeof __app_id !== 'undefined' ? __app_id : 'sapporo-usung-family-2026';
+    const appId = 'sapporo-usung-family-2026';
 
     function showSyncInfoModal() {
       const modal = document.getElementById('syncInfoModal');
       if (modal) modal.classList.remove('hidden');
 
-      // 저장된 사용자 지정 config 로드
       const savedConfig = localStorage.getItem('sapporo_custom_firebase_config');
       const inputEl = document.getElementById('firebaseConfigInput');
       if (inputEl && savedConfig) {
@@ -2519,7 +2594,6 @@
         return;
       }
 
-      // 'const firebaseConfig = { ... };' 형태일 경우 중괄호 영역만 추출
       if (rawText.includes('{') && rawText.includes('}')) {
         const startIdx = rawText.indexOf('{');
         const endIdx = rawText.lastIndexOf('}');
@@ -2527,12 +2601,10 @@
       }
 
       try {
-        // 객체 형식(키에 따옴표 없는 경우 포함) 파싱 호환
         let parsed;
         try {
           parsed = JSON.parse(rawText);
         } catch (e) {
-          // JS 객체 리터럴 형식 변환
           parsed = new Function(`return (${rawText});`)();
         }
 
@@ -2592,16 +2664,12 @@
     async function initCloudRealtimeSync() {
       if (!window._firebaseModules) return;
 
-      const { initializeApp, getAuth, signInAnonymously, signInWithCustomToken, getFirestore, doc, setDoc, onSnapshot, collection } = window._firebaseModules;
+      const { initializeApp, getAuth, signInAnonymously, getFirestore, collection, onSnapshot } = window._firebaseModules;
 
       let firebaseConfig = null;
-
-      // 1. 코드 상단 직접 기입한 config 우선 검사
       if (HARDCODED_FIREBASE_CONFIG && HARDCODED_FIREBASE_CONFIG.projectId) {
         firebaseConfig = HARDCODED_FIREBASE_CONFIG;
-      }
-      // 2. 사용자가 모달에서 수기 저장한 config 검사
-      else {
+      } else {
         const savedCustom = localStorage.getItem('sapporo_custom_firebase_config');
         if (savedCustom) {
           try {
@@ -2609,15 +2677,6 @@
           } catch (e) {
             console.error("Custom firebase config parse error", e);
           }
-        }
-      }
-
-      // 3. 시스템 환경 변수(Preview 환경) 폴백
-      if (!firebaseConfig && typeof __firebase_config !== 'undefined') {
-        try {
-          firebaseConfig = typeof __firebase_config === 'string' ? JSON.parse(__firebase_config) : __firebase_config;
-        } catch (e) {
-          console.error("Environment firebase config parse error", e);
         }
       }
 
@@ -2631,28 +2690,11 @@
         cloudDb = getFirestore(app);
         cloudAuth = getAuth(app);
 
-        // 인증 처리: 사용자 전용 Firebase 또는 토큰 불일치 시 익명 인증으로 자동 전환
-        let authed = false;
-        const isPlatformConfig = !HARDCODED_FIREBASE_CONFIG && !localStorage.getItem('sapporo_custom_firebase_config');
-
-        if (isPlatformConfig && typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-          try {
-            const cred = await signInWithCustomToken(cloudAuth, __initial_auth_token);
-            cloudUser = cred.user;
-            authed = true;
-          } catch (tokenErr) {
-            console.warn("플랫폼 토큰 인증 불일치 감지, 익명 로그인으로 자동 전환합니다:", tokenErr);
-          }
-        }
-
-        if (!authed) {
-          const cred = await signInAnonymously(cloudAuth);
-          cloudUser = cred.user;
-        }
+        const cred = await signInAnonymously(cloudAuth);
+        cloudUser = cred.user;
 
         updateSyncStatus(true, cloudUser.uid);
 
-        // 가족 공용 데이터 실시간 리스너 구독 (RULE 1 & RULE 2)
         const colRef = collection(cloudDb, 'artifacts', appId, 'public', 'data', 'travel_data');
 
         onSnapshot(colRef, (snapshot) => {
@@ -2734,18 +2776,39 @@
       pushDataToCloud('balances', balances);
     }
 
+    /* 전역 window 바인딩 (인라인 onclick 안전성 보장) */
+    window.openAddSpotModal = openAddSpotModal;
+    window.closeAddSpotModal = closeAddSpotModal;
+    window.openAddCheckModal = openAddCheckModal;
+    window.closeAddCheckModal = closeAddCheckModal;
+    window.openAddExpenseModal = openAddExpenseModal;
+    window.closeAddExpenseModal = closeAddExpenseModal;
+    window.openEmergencyModal = openEmergencyModal;
+    window.closeEmergencyModal = closeEmergencyModal;
+    window.openPorocleRouteModal = openPorocleRouteModal;
+    window.closePorocleRouteModal = closePorocleRouteModal;
+    window.openPorocleNoticeModal = openPorocleNoticeModal;
+    window.closePorocleNoticeModal = closePorocleNoticeModal;
+    window.openSpotDetailModal = openSpotDetailModal;
+    window.closeSpotDetailModal = closeSpotDetailModal;
+    window.showSyncInfoModal = showSyncInfoModal;
+    window.closeSyncInfoModal = closeSyncInfoModal;
+    window.openGallery = openGallery;
+    window.closeGalleryModal = closeGalleryModal;
+    window.switchTab = switchTab;
+    window.selectDay = selectDay;
+    window.saveNewSpot = saveNewSpot;
+    window.saveNewCheckItem = saveNewCheckItem;
+    window.saveNewExpense = saveNewExpense;
+    window.saveAndRenderBalances = saveAndRenderBalances;
     window.initCloudRealtimeSync = initCloudRealtimeSync;
 
-    /* 🚀 안드로이드 크롬 전용 설치 이벤트 제어 */
-    let deferredPrompt = null;
+    /* PWA 설치 이벤트 제어 */
     window.addEventListener('beforeinstallprompt', (e) => {
-      // 기본 설치 팝업을 유지하여 브라우저의 정상 설치를 허용합니다
-      deferredPrompt = e;
       console.log('PWA installation prompt ready');
     });
 
     window.addEventListener('appinstalled', () => {
-      deferredPrompt = null;
       showToast('26년 삿포로 여행 앱이 정상 설치되었습니다!');
     });
 
