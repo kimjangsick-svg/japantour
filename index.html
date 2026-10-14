@@ -92,7 +92,7 @@
 
     <!-- 중앙 메인 삿포로 스타 심볼 & 타이틀 -->
     <div class="flex flex-col items-center text-center space-y-6 max-w-xs z-10">
-      <!-- 삿포ro 골드 스타 원형 로고 배지 -->
+      <!-- 삿포로 골드 스타 원형 로고 배지 -->
       <div class="relative flex items-center justify-center">
         <div class="w-36 h-36 rounded-full bg-slate-900/90 border-2 border-amber-400/40 shadow-2xl flex items-center justify-center p-3 splash-star-glow">
           <svg viewBox="0 0 512 512" class="w-full h-full">
@@ -320,9 +320,19 @@
       <!-- 4일차 -->
       <section id="day-4" class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hidden">
         <div class="bg-indigo-50/70 p-4 border-b border-indigo-100">
-          <span class="text-[11px] font-black text-indigo-600 uppercase">DAY 4</span>
-          <h2 class="text-base font-bold text-slate-800">10/18 (일) 비에이 & 후라노 전일 드라이브</h2>
-          <p class="text-xs text-slate-500">청의 호수, 흰수염 폭포, 준페이 에비동</p>
+          <div class="flex items-center justify-between gap-2 flex-wrap">
+            <div>
+              <span class="text-[11px] font-black text-indigo-600 uppercase">DAY 4</span>
+              <h2 class="text-base font-bold text-slate-800">10/18 (일) 비에이 & 후라노 전일 드라이브</h2>
+            </div>
+            <!-- 후라노 인근 코스 팝업 버튼 -->
+            <div class="flex items-center justify-end gap-1.5 shrink-0">
+              <button onclick="openFuranoDriveRouteModal()" class="bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-extrabold px-2.5 py-1.5 rounded-xl shadow-xs flex items-center gap-1 transition border border-indigo-400" title="후라노·비에이·대설산 드라이브 추천 코스도 열기">
+                <span>🚗</span><span>후라노 인근 코스</span>
+              </button>
+            </div>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">청의 호수, 흰수염 폭포, 아사히다케 로프웨이 & 비에이 언덕 순환</p>
         </div>
         <div class="p-4 space-y-3">
           <div id="dynamic-spots-day-4" class="space-y-3"></div>
@@ -565,6 +575,290 @@
       <!-- 메모 목록 (번호와 제목만 깔끔하게 표시) -->
       <div id="memoListContainer" class="space-y-2.5"></div>
     </section>
+  </div>
+
+  <!-- 🚗 10/18 후라노 인근 추천 드라이브 코스 팝업 모달 -->
+  <div id="furanoDriveRouteModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-3 hidden backdrop-blur-sm transition-opacity duration-200">
+    <div class="bg-white rounded-3xl w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl border border-indigo-100 overflow-hidden">
+      <!-- 모달 헤더 -->
+      <div class="p-4 border-b border-slate-100 bg-gradient-to-r from-indigo-50 to-blue-50 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-base font-bold shadow-xs">
+            🚗
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm sm:text-base text-slate-800">10/18 후라노·비에이·대설산 드라이브 코스</h3>
+            <p class="text-[11px] text-indigo-600 font-bold">국도 237호 경유 순환 • 149 km • 주행 약 2시간 55분</p>
+          </div>
+        </div>
+        <button onclick="closeFuranoDriveRouteModal()" class="text-slate-400 hover:text-slate-700 p-1.5 text-lg font-bold leading-none">✕</button>
+      </div>
+
+      <!-- 모달 본문 (SVG 맵 + 코스 상세 리스트) -->
+      <div class="p-4 overflow-y-auto space-y-4 flex-1 text-xs">
+        <!-- SVG 드라이브 루트 맵 그래픽 -->
+        <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200 relative overflow-hidden shadow-inner">
+          <div class="flex justify-between items-center mb-1 text-[11px]">
+            <span class="font-extrabold text-slate-700 flex items-center gap-1"><span>🗺️</span> 후라노 ➔ 비에이 ➔ 대설산 순환 코스도</span>
+            <span class="text-[10px] bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded-full">순환 드라이브 149km</span>
+          </div>
+          <svg viewBox="0 0 540 600" class="w-full h-auto max-h-[410px] select-none">
+            <defs>
+              <marker id="driveArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#3b82f6"/>
+              </marker>
+              <filter id="badgeShadowDrive" x="-10%" y="-10%" width="120%" height="130%">
+                <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-opacity="0.18"/>
+              </filter>
+            </defs>
+
+            <!-- 배경 지도 베이스 -->
+            <rect x="0" y="0" width="540" height="600" fill="#f8fafc" rx="14"/>
+
+            <!-- 산악 지대 배경 (대설산 / 아사히다케 & 토카치다케 산맥) -->
+            <path d="M 370 20 Q 480 30 520 110 T 520 220 L 400 230 Z" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+            <text x="440" y="65" fill="#047857" font-size="11.5" font-weight="900">대설산 연봉</text>
+            <text x="430" y="82" fill="#059669" font-size="10" font-weight="bold">아사히다케 2,291m</text>
+
+            <path d="M 360 360 Q 470 410 510 490 T 420 540 L 330 450 Z" fill="#fef3c7" stroke="#fde68a" stroke-width="1.5"/>
+            <text x="410" y="475" fill="#b45309" font-size="11" font-weight="900">토카치다케 연봉</text>
+            <text x="420" y="492" fill="#92400e" font-size="9.5" font-weight="bold">활화산 지대 2,077m</text>
+
+            <!-- 다키사토 호수(Takisato Lake) 좌측 배경 -->
+            <ellipse cx="65" cy="460" rx="35" ry="18" fill="#bae6fd" stroke="#7dd3fc" stroke-width="1"/>
+            <text x="45" y="463" fill="#0284c7" font-size="9.5" font-weight="bold">다키사토 호</text>
+
+            <!-- 국도 237번 도로 (화훼가도) 가이드 배경 점선 -->
+            <path d="M 190 560 L 195 490 L 220 375 L 240 250 L 250 180" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="6,4"/>
+            <rect x="175" y="415" width="62" height="18" rx="4" fill="#3b82f6"/>
+            <text x="206" y="428" fill="#ffffff" font-size="9.5" font-weight="900" text-anchor="middle">국도 237호</text>
+
+            <!-- 실제 파란색 드라이브 경로 라인 (사진과 100% 동일한 순환선) -->
+            <!-- 출발: 라비스타(190,560) -> 237번 북상 -> 페름라테르(225,200) -> 비에이역(255,205) -> 히가시카와/대설산 산록(375,120) -> 아사히다케 스가타미(465,85) -> 청의호수(350,345) -> 흰수염폭포(385,380) -> 비트윈더브레드(365,340) -> 토카치다케전망대(395,430) -> 후라노 복귀 점선 -->
+            <path d="M 190 550 L 195 480 L 225 365 L 225 210 L 255 210 L 320 160 L 375 125 L 455 90 L 455 95 L 375 130 L 325 175 L 270 230 L 340 335 L 375 375 L 360 345 L 390 425" fill="none" stroke="#2563eb" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" marker-mid="url(#driveArrow)"/>
+
+            <!-- 복귀선 (토카치다케 -> 카미후라노 -> 라비스타 후라노 힐즈) -->
+            <path d="M 390 425 L 320 455 L 225 485 L 190 550" fill="none" stroke="#64748b" stroke-width="3" stroke-dasharray="6,4"/>
+            <text x="260" y="525" fill="#475569" font-size="10" font-weight="bold" transform="rotate(-15 260 525)">호텔 복귀 경로 ➔</text>
+
+            <!-- ① 도미인 라비스타 후라노 힐즈 (출발점) -->
+            <g transform="translate(190, 550)">
+              <circle cx="0" cy="0" r="13" fill="#dc2626" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowDrive)"/>
+              <text x="0" y="4.5" fill="#fff" font-size="11" font-weight="900" text-anchor="middle">1</text>
+              <rect x="18" y="-13" width="160" height="24" rx="5" fill="#ffffff" stroke="#dc2626" stroke-width="1.5" filter="url(#badgeShadowDrive)"/>
+              <text x="25" y="4" fill="#b91c1c" font-size="11" font-weight="900">① 라비스타 후라노 힐즈 (출발)</text>
+            </g>
+
+            <!-- ② Ferme La Terre Biei (페름 라테르 비에이) -->
+            <g transform="translate(220, 195)">
+              <circle cx="0" cy="0" r="11" fill="#2563eb" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowDrive)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">2</text>
+              <rect x="-145" y="-12" width="138" height="22" rx="4" fill="#ffffff" stroke="#2563eb" stroke-width="1.3" filter="url(#badgeShadowDrive)"/>
+              <text x="-139" y="3.5" fill="#1d4ed8" font-size="10.5" font-weight="bold">② Ferme La Terre Biei</text>
+            </g>
+
+            <!-- ③ 비에이조 (Biei Town / 중심가) -->
+            <g transform="translate(260, 215)">
+              <circle cx="0" cy="0" r="11" fill="#059669" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowDrive)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">3</text>
+              <rect x="15" y="-11" width="105" height="22" rx="4" fill="#ffffff" stroke="#059669" stroke-width="1.3" filter="url(#badgeShadowDrive)"/>
+              <text x="21" y="4.5" fill="#065f46" font-size="10.5" font-weight="900">③ 비에이조 (중심)</text>
+            </g>
+
+            <!-- ④ 아사히다케 로프웨이 산록역 (식당) -->
+            <g transform="translate(375, 125)">
+              <circle cx="0" cy="0" r="11" fill="#059669" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowDrive)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">4</text>
+              <rect x="-155" y="-12" width="148" height="22" rx="4" fill="#ffffff" stroke="#059669" stroke-width="1.3" filter="url(#badgeShadowDrive)"/>
+              <text x="-149" y="3.5" fill="#065f46" font-size="10.5" font-weight="bold">④ 아사히다케 산록역 (식당)</text>
+            </g>
+
+            <!-- ⑤ 아사히다케 로프웨이 스가타미 역 -->
+            <g transform="translate(460, 85)">
+              <circle cx="0" cy="0" r="12" fill="#7c3aed" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowDrive)"/>
+              <text x="0" y="4.5" fill="#fff" font-size="11" font-weight="900" text-anchor="middle">5</text>
+              <rect x="-162" y="-28" width="155" height="23" rx="4" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5" filter="url(#badgeShadowDrive)"/>
+              <text x="-156" y="-12" fill="#6d28d9" font-size="10.5" font-weight="900">⑤ 스가타미 역 (해발 1,600m)</text>
+            </g>
+
+            <!-- ⑥ 청의 호수 (아오이이케) -->
+            <g transform="translate(340, 335)">
+              <circle cx="0" cy="0" r="11" fill="#0284c7" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowDrive)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">6</text>
+              <rect x="-115" y="-11" width="105" height="22" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="1.3" filter="url(#badgeShadowDrive)"/>
+              <text x="-109" y="4.5" fill="#0369a1" font-size="10.5" font-weight="900">⑥ 청의 호수 (푸른못)</text>
+            </g>
+
+            <!-- ⑦ 흰수염폭포 주차장 -->
+            <g transform="translate(385, 375)">
+              <circle cx="0" cy="0" r="11" fill="#2563eb" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowDrive)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">7</text>
+              <rect x="15" y="-11" width="128" height="22" rx="4" fill="#ffffff" stroke="#2563eb" stroke-width="1.3" filter="url(#badgeShadowDrive)"/>
+              <text x="21" y="4.5" fill="#1d4ed8" font-size="10.5" font-weight="bold">⑦ 흰수염폭포 주차장</text>
+            </g>
+
+            <!-- ⑧ 비트윈 더 브레드 (수제버거) -->
+            <g transform="translate(355, 360)">
+              <circle cx="0" cy="0" r="10" fill="#ea580c" stroke="#fff" stroke-width="2" filter="url(#badgeShadowDrive)"/>
+              <text x="0" y="3.5" fill="#fff" font-size="9.5" font-weight="900" text-anchor="middle">8</text>
+              <rect x="-128" y="8" width="120" height="21" rx="4" fill="#ffffff" stroke="#ea580c" stroke-width="1.2" filter="url(#badgeShadowDrive)"/>
+              <text x="-122" y="23" fill="#c2410c" font-size="10" font-weight="bold">⑧ 비트윈 더 브레드</text>
+            </g>
+
+            <!-- ⑨ 토카치다케 전망대 (최종 경유지) -->
+            <g transform="translate(390, 425)">
+              <circle cx="0" cy="0" r="12" fill="#d97706" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowDrive)"/>
+              <text x="0" y="4.5" fill="#fff" font-size="11" font-weight="900" text-anchor="middle">9</text>
+              <rect x="15" y="-12" width="138" height="24" rx="5" fill="#ffffff" stroke="#d97706" stroke-width="1.5" filter="url(#badgeShadowDrive)"/>
+              <text x="21" y="4" fill="#b45309" font-size="11" font-weight="900">⑨ 토카치다케 전망대 (930m)</text>
+            </g>
+
+            <!-- ⑩ 라비스타 후라노 힐즈 복귀 표시 -->
+            <g transform="translate(190, 580)">
+              <rect x="-55" y="-9" width="110" height="18" rx="4" fill="#1e293b"/>
+              <text x="0" y="4" fill="#ffffff" font-size="9.5" font-weight="bold" text-anchor="middle">⑩ 호텔 귀환 (온천욕)</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- 10개 코스 순환 상세 목록 -->
+        <div class="space-y-2">
+          <div class="font-extrabold text-slate-800 text-xs flex items-center justify-between">
+            <span class="flex items-center gap-1"><span>🧭</span> 구글 맵 드라이브 추천 코스 순서</span>
+            <span class="text-[10px] text-indigo-600 font-bold">총 10개 거점 • 149km</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-1.5 text-[11px]">
+            <!-- 1 -->
+            <div class="p-2.5 rounded-xl bg-rose-50/70 border border-rose-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-rose-600 text-white font-black text-[10px] flex items-center justify-center shrink-0">1</span>
+                <div>
+                  <div class="font-bold text-slate-800">도미인 프리미엄 라 비스타 후라노 힐스 (출발)</div>
+                  <div class="text-[10.5px] text-rose-700">오전 08:30경 출발 ➔ 국도 237번 타고 북쪽 비에이 방면 주행</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-rose-700 font-bold border border-rose-200">출발</span>
+            </div>
+
+            <!-- 2 -->
+            <div class="p-2.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-indigo-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">2</span>
+                <div>
+                  <div class="font-bold text-slate-800">Ferme La Terre Biei (페름 라테르 비에이)</div>
+                  <div class="text-[10.5px] text-slate-500">비에이 유제품 명품 팜 베이커리 & 카페 (우유 슈크림 추천)</div>
+                </div>
+              </div>
+              <span class="text-[10px] text-slate-400">카페</span>
+            </div>
+
+            <!-- 3 -->
+            <div class="p-2.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-indigo-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">3</span>
+                <div>
+                  <div class="font-bold text-slate-800">비에이조 (비에이역 / 중심가 마을)</div>
+                  <div class="text-[10.5px] text-slate-500">준페이(에비동) 등 점심 대기 예약 또는 마을 풍경 감상</div>
+                </div>
+              </div>
+              <span class="text-[10px] text-slate-400">경유</span>
+            </div>
+
+            <!-- 4 -->
+            <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">4</span>
+                <div>
+                  <div class="font-bold text-slate-800">아사히다케 로프웨이 산록역 (식당 알펜 플로라)</div>
+                  <div class="text-[10.5px] text-emerald-700">해발 1,100m 산록역 2층 레스토랑 / 돈까스 라멘 & 야채 카레</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-emerald-700 font-bold border border-emerald-200">점심</span>
+            </div>
+
+            <!-- 5 -->
+            <div class="p-2.5 rounded-xl bg-purple-50/70 border border-purple-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-purple-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">5</span>
+                <div>
+                  <div class="font-bold text-slate-800">아사히다케 로프웨이 스가타미 역 (해발 1,600m)</div>
+                  <div class="text-[10.5px] text-purple-700">10분 탑승 ➔ 스가타미 연못 산책로 & 분기공 대자연 절경 관람</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-purple-700 font-bold border border-purple-200">핵심 뷰</span>
+            </div>
+
+            <!-- 6 -->
+            <div class="p-2.5 rounded-xl bg-sky-50/70 border border-sky-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-sky-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">6</span>
+                <div>
+                  <div class="font-bold text-slate-800">청의 호수 (Shirogane Blue Pond / 아오이이케)</div>
+                  <div class="text-[10.5px] text-sky-700">신비로운 코발트블루 물빛과 자작나무의 조화 (대표 포토존)</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-sky-700 font-bold border border-sky-200">명소</span>
+            </div>
+
+            <!-- 7 -->
+            <div class="p-2.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-indigo-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">7</span>
+                <div>
+                  <div class="font-bold text-slate-800">흰수염 폭포 주차장 (시라히게노타키)</div>
+                  <div class="text-[10.5px] text-slate-500">블루리버 다리 위에서 푸른 계류와 암벽 지하수 폭포 감상</div>
+                </div>
+              </div>
+              <span class="text-[10px] text-slate-400">차로 5분</span>
+            </div>
+
+            <!-- 8 -->
+            <div class="p-2.5 rounded-xl bg-orange-50/70 border border-orange-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-orange-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">8</span>
+                <div>
+                  <div class="font-bold text-slate-800">비트윈 더 브레드 (BETWEEN THE BREAD)</div>
+                  <div class="text-[10.5px] text-orange-700">미치노에키 비루케 숲속 수제 버거 & 감성 카페 간식</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-orange-700 font-bold border border-orange-200">간식</span>
+            </div>
+
+            <!-- 9 -->
+            <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-amber-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">9</span>
+                <div>
+                  <div class="font-bold text-slate-800">토카치다케 전망대 (해발 930m)</div>
+                  <div class="text-[10.5px] text-amber-800">차로 산 정상부까지 진입 ➔ 활화산 분화구 연기 & 파노라마 뷰</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-amber-800 font-bold border border-amber-200">전망대</span>
+            </div>
+
+            <!-- 10 -->
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-300 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-slate-800 text-white font-bold text-[10px] flex items-center justify-center shrink-0">10</span>
+                <div>
+                  <div class="font-bold text-slate-800">라비스타 후라노 힐즈 (호텔 복귀)</div>
+                  <div class="text-[10.5px] text-slate-600">카미후라노 방향으로 남하 ➔ 호텔 천연 온천욕 & 저녁 만찬</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-slate-800 text-white px-2 py-0.5 rounded-md font-bold">복귀</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 모달 하단 닫기 버튼 -->
+      <div class="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-end">
+        <button onclick="closeFuranoDriveRouteModal()" class="w-full py-2.5 text-xs bg-indigo-600 hover:bg-indigo-700 active:scale-95 font-bold rounded-xl text-white shadow transition">
+          닫기
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- 🗺️ 포로클 자전거 투어 노선도 팝업 모달 -->
@@ -1427,6 +1721,15 @@
       if (modal) modal.classList.add('hidden');
     }
 
+    function openFuranoDriveRouteModal() {
+      const modal = document.getElementById('furanoDriveRouteModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+    function closeFuranoDriveRouteModal() {
+      const modal = document.getElementById('furanoDriveRouteModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
     function openPorocleNoticeModal() {
       const modal = document.getElementById('porocleNoticeModal');
       if (modal) modal.classList.remove('hidden');
@@ -2216,7 +2519,7 @@
           name: '대설산 아사히다케 로프웨이 & 스가타미 연못', 
           reason: '홋카이도 최고봉으로 일본에서 가장 빨리 단풍과 첫눈을 맞이하는 웅장한 대자연 명소입니다.', 
           family: '로프웨이를 타고 10분 만에 해발 1,600m에 올라 화산 분기공과 호수를 편안히 감상할 수 있습니다.', 
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Asahidake+Ropeway+Higashikawa' 
+          mapUrl: 'https://maps.google.com/?cid=908678211881800540' 
         },
         { 
           id: 'spot_d4_bluepond', 
@@ -2224,7 +2527,7 @@
           name: '비에이 청의 호수 (아오이이케)', 
           reason: '자작나무와 신비로운 코발트블루 호수 빛깔이 어우러진 비현실적인 풍경의 대표 명소입니다.', 
           family: '햇빛 각도가 좋은 맑은 오전 시간대(08:00~10:00)에 방문하면 더욱 영롱한 물빛을 볼 수 있습니다.', 
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Shirogane+Blue+Pond+Biei' 
+          mapUrl: 'https://maps.google.com/?cid=345959270472972190' 
         },
         { 
           id: 'spot_d4_shirahige', 
@@ -2232,7 +2535,7 @@
           name: '흰수염 폭포 (시라히게노타키)', 
           reason: '청의 호수에서 차로 5분 거리로, 암벽 틈새로 지하수가 쏟아져 내리는 절경 계곡 폭포입니다.', 
           family: '다리 위에서 한눈에 탁 트인 푸른 물빛 계류와 가을 단풍을 함께 감상할 수 있습니다.', 
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Shirahige+Waterfall+Biei' 
+          mapUrl: 'https://maps.google.com/?cid=362140915972662822' 
         },
         { 
           id: 'spot_d4_tokachidake', 
@@ -2240,7 +2543,7 @@
           name: '도카치다케 전망대 (해발 930m)', 
           reason: '거친 화산 용암류 흔적과 웅장한 가을 산세가 눈앞에 펼쳐지는 파노라마 전망대입니다.', 
           family: '차로 정상 인근까지 편하게 올라갈 수 있으며 당일치기 온천욕과 연계하기 좋습니다.', 
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Tokachidake+Observatory+Biei' 
+          mapUrl: 'https://maps.google.com/?cid=2741782446065272332' 
         },
         { 
           id: 'spot_d4_biruke', 
@@ -2256,7 +2559,7 @@
           name: 'Ferme La Terre Biei (페름 라테르 비에이)', 
           reason: '비에이산 신선한 유제품으로 구워내는 유명 팜 베이커리 카페로 우유 슈크림이 인기입니다.', 
           family: '탁 트인 전원 풍경을 바라보며 신선한 빵과 디저트를 여유롭게 즐길 수 있습니다.', 
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Ferme+La+Terre+Biei' 
+          mapUrl: 'https://maps.google.com/?cid=3802394668965715004' 
         },
         {
           id: 'spot_d4_winehouse',
@@ -3114,6 +3417,8 @@
     window.closeEmergencyModal = closeEmergencyModal;
     window.openPorocleRouteModal = openPorocleRouteModal;
     window.closePorocleRouteModal = closePorocleRouteModal;
+    window.openFuranoDriveRouteModal = openFuranoDriveRouteModal;
+    window.closeFuranoDriveRouteModal = closeFuranoDriveRouteModal;
     window.openPorocleNoticeModal = openPorocleNoticeModal;
     window.closePorocleNoticeModal = closePorocleNoticeModal;
     window.openSpotDetailModal = openSpotDetailModal;
