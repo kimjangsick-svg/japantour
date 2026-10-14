@@ -151,7 +151,7 @@
             <div class="text-sm font-bold text-slate-800">이스타항공 ZE951 (김해 ➔ 신치토세)</div>
             <div class="text-[11px] text-indigo-600 font-semibold mt-0.5">💰 왕복 항공+3인 보험: 1,070,420원</div>
             <div class="flex justify-end gap-1 mt-2">
-              <a href="https://www.google.com/maps/search/?q=New+Chitose+Airport" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold">📍 공항 위치</a>
+              <button type="button" onclick="openInAppMap('신치토세 공항 (New Chitose Airport)', 'location')" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold active:scale-95 transition">📍 공항 위치</button>
               <button onclick="openGallery('spot_d1_flight', '이스타항공 신치토세 공항')" class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 rounded-lg border border-indigo-200 font-bold flex items-center gap-0.5">
                 <span>📸</span><span id="badge-spot_d1_flight">0</span>
               </button>
@@ -163,9 +163,9 @@
             <div class="text-sm font-bold text-slate-800">홀리데이 인 & 스위트 삿포로 오도리 공원</div>
             <div class="text-[11px] text-amber-900 font-semibold mt-0.5">💰 2박 총액: 430,834원 선결제 완료</div>
             <div class="flex justify-end gap-1 mt-2">
-              <a href="https://www.google.com/maps/search/?q=Holiday+Inn+and+Suites+Sapporo+Odori+Park" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold">📍 위치</a>
-              <a href="https://www.google.com/maps/search/?q=Holiday+Inn+and+Suites+Sapporo+Odori+Park" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg font-bold">🚶 도보길</a>
-              <a href="https://www.google.com/maps/search/?q=Holiday+Inn+and+Suites+Sapporo+Odori+Park" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-blue-50 text-blue-700 border border-blue-200 rounded-lg font-bold">🚗 운전경로</a>
+              <button type="button" onclick="openInAppMap('Holiday Inn & Suites Sapporo Odori Park', 'location')" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold active:scale-95 transition">📍 위치</button>
+              <button type="button" onclick="openInAppMap('Holiday Inn & Suites Sapporo Odori Park', 'walk')" class="px-2 py-1 text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg font-bold active:scale-95 transition">🚶 도보길</button>
+              <button type="button" onclick="openInAppMap('Holiday Inn & Suites Sapporo Odori Park', 'drive')" class="px-2 py-1 text-xs bg-blue-50 text-blue-700 border border-blue-200 rounded-lg font-bold active:scale-95 transition">🚗 운전경로</button>
               <button onclick="openGallery('spot_d1_hotel', '홀리데이 인 삿포로')" class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 rounded-lg border border-indigo-200 font-bold flex items-center gap-0.5">
                 <span>📸</span><span id="badge-spot_d1_hotel">0</span>
               </button>
@@ -218,8 +218,8 @@
             <div class="text-sm font-bold text-slate-800">니폰렌트카 스스키노 지점</div>
             <div class="text-[11px] text-slate-600 mt-0.5">선결제: 219,667원 | 현지결제: JPY 5,500 (편도 수수료)</div>
             <div class="flex justify-end gap-1 mt-2">
-              <a href="https://www.google.com/maps/search/?q=Nippon+Rent-A-Car+Susukino" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold">📍 위치</a>
-              <a href="https://www.google.com/maps/search/?q=Nippon+Rent-A-Car+Susukino" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg font-bold">🚶 도보길</a>
+              <button type="button" onclick="openInAppMap('Nippon Rent-A-Car Susukino Sapporo', 'location')" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold active:scale-95 transition">📍 위치</button>
+              <button type="button" onclick="openInAppMap('Nippon Rent-A-Car Susukino Sapporo', 'walk')" class="px-2 py-1 text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg font-bold active:scale-95 transition">🚶 도보길</button>
               <button onclick="openGallery('spot_d3_rental', '니폰렌트카 스스키노')" class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 rounded-lg border border-indigo-200 font-bold flex items-center gap-0.5">
                 <span>📸</span><span id="badge-spot_d3_rental">0</span>
               </button>
@@ -231,8 +231,8 @@
             <div class="text-sm font-bold text-slate-800">라비스타 후라노 힐즈 온센</div>
             <div class="text-[11px] text-amber-900 font-semibold mt-0.5">💰 2박 총액: JPY 51,834 확정 결제 완료</div>
             <div class="flex justify-end gap-1 mt-2">
-              <a href="https://www.google.com/maps/search/?q=La+Vista+Furano+Hills" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold">📍 위치</a>
-              <a href="https://www.google.com/maps/search/?q=La+Vista+Furano+Hills" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-blue-50 text-blue-700 border border-blue-200 rounded-lg font-bold">🚗 운전내비</a>
+              <button type="button" onclick="openInAppMap('La Vista Furano Hills Hot Springs', 'location')" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold active:scale-95 transition">📍 위치</button>
+              <button type="button" onclick="openInAppMap('La Vista Furano Hills Hot Springs', 'drive')" class="px-2 py-1 text-xs bg-blue-50 text-blue-700 border border-blue-200 rounded-lg font-bold active:scale-95 transition">🚗 운전내비</button>
               <button onclick="openGallery('spot_d3_lavista', '라비스타 후라노 힐즈')" class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 rounded-lg border border-indigo-200 font-bold flex items-center gap-0.5">
                 <span>📸</span><span id="badge-spot_d3_lavista">0</span>
               </button>
@@ -278,8 +278,8 @@
             <div class="text-sm font-bold text-slate-800">니폰렌트카 신치토세 공항 영업소</div>
             <div class="text-[11px] text-rose-600 font-semibold mt-0.5">⚠️ 반납 전 5km 이내 주유소에서 만유(Full) 필수 & 영수증 지참</div>
             <div class="flex justify-end gap-1 mt-2">
-              <a href="https://www.google.com/maps/search/?q=Nippon+Rent-A-Car+New+Chitose+Airport" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold">📍 위치</a>
-              <a href="https://www.google.com/maps/search/?q=Nippon+Rent-A-Car+New+Chitose+Airport" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-blue-50 text-blue-700 border border-blue-200 rounded-lg font-bold">🚗 운전내비</a>
+              <button type="button" onclick="openInAppMap('Nippon Rent-A-Car New Chitose Airport', 'location')" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold active:scale-95 transition">📍 위치</button>
+              <button type="button" onclick="openInAppMap('Nippon Rent-A-Car New Chitose Airport', 'drive')" class="px-2 py-1 text-xs bg-blue-50 text-blue-700 border border-blue-200 rounded-lg font-bold active:scale-95 transition">🚗 운전내비</button>
               <button onclick="openGallery('spot_d5_return', '렌터카 반납지점')" class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 rounded-lg border border-indigo-200 font-bold flex items-center gap-0.5">
                 <span>📸</span><span id="badge-spot_d5_return">0</span>
               </button>
@@ -291,7 +291,7 @@
             <div class="text-sm font-bold text-slate-800">이스타항공 ZE952 (신치토세 ➔ 김해)</div>
             <div class="text-[11px] text-slate-500 font-medium mt-0.5">신치토세 국제선 청사 출국 수속 및 면세점 이용</div>
             <div class="flex justify-end gap-1 mt-2">
-              <a href="https://www.google.com/maps/search/?q=New+Chitose+Airport+International+Terminal" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold">📍 국제선 터미널</a>
+              <button type="button" onclick="openInAppMap('New Chitose Airport International Terminal', 'location')" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold active:scale-95 transition">📍 국제선 터미널</button>
               <button onclick="openGallery('spot_d5_flight', '귀국 항공편 ZE952')" class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 rounded-lg border border-indigo-200 font-bold flex items-center gap-0.5">
                 <span>📸</span><span id="badge-spot_d5_flight">0</span>
               </button>
@@ -310,7 +310,7 @@
               수하물 수취 및 세관 통과 ➔ 무사 귀가! 온 가족이 함께한 4박 5일 삿포로 여행 완료 🏠
             </div>
             <div class="flex justify-end gap-1 mt-2.5">
-              <a href="https://www.google.com/maps/search/?q=Gimhae+International+Airport" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold">📍 김해공항 위치</a>
+              <button type="button" onclick="openInAppMap('Gimhae International Airport', 'location')" class="px-2 py-1 text-xs bg-white text-slate-700 rounded-lg border font-semibold active:scale-95 transition">📍 김해공항 위치</button>
               <button onclick="openGallery('spot_d5_gimhae', '김해공항 귀국')" class="px-2 py-1 text-xs bg-emerald-100/70 text-emerald-800 rounded-lg border border-emerald-200 font-bold flex items-center gap-0.5">
                 <span>📸</span><span id="badge-spot_d5_gimhae">0</span>
               </button>
@@ -503,6 +503,47 @@
     </section>
   </div>
 
+  <!-- 🗺️ 인앱 구글 지도 전용 팝업 모달 (WebView intent:// 에러 원천 차단) -->
+  <div id="inAppMapModal" class="fixed inset-0 bg-black/70 z-60 flex items-center justify-center p-2.5 hidden backdrop-blur-xs transition-opacity duration-200">
+    <div class="bg-white rounded-3xl w-full max-w-lg h-[86vh] flex flex-col shadow-2xl border border-indigo-100 overflow-hidden">
+      <!-- 모달 상단 헤더 -->
+      <div class="p-3.5 border-b border-slate-200 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white flex justify-between items-center gap-2">
+        <div class="flex items-center gap-2 min-w-0">
+          <span id="inAppMapBadge" class="text-[10px] font-black px-2 py-0.5 rounded-full bg-white text-indigo-700 shrink-0">📍 위치</span>
+          <h3 id="inAppMapTitle" class="font-extrabold text-sm truncate">장소명</h3>
+        </div>
+        <button onclick="closeInAppMapModal()" class="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white font-bold text-sm shrink-0">✕</button>
+      </div>
+
+      <!-- 안내 & 복사 툴바 -->
+      <div class="px-3.5 py-2 bg-indigo-50 border-b border-indigo-100 flex items-center justify-between gap-2 text-[11px]">
+        <span class="text-indigo-900 font-semibold truncate" id="inAppMapSubHint">지도를 두 손가락으로 확대/축소하여 위치를 확인하세요.</span>
+        <button onclick="copyCurrentMapPlaceName()" class="px-2.5 py-1 bg-white hover:bg-indigo-100 active:scale-95 text-indigo-700 font-extrabold rounded-lg border border-indigo-200 shadow-2xs shrink-0 flex items-center gap-1 transition">
+          <span>📋</span><span>장소명 복사</span>
+        </button>
+      </div>
+
+      <!-- 구글 지도 iframe 영역 (intent:// 리다이렉트가 절대 발생하지 않는 output=embed 방식) -->
+      <div class="flex-1 bg-slate-100 relative">
+        <iframe 
+          id="inAppMapIframe" 
+          src="about:blank" 
+          class="w-full h-full border-0" 
+          allowfullscreen 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <!-- 모달 하단 닫기 -->
+      <div class="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
+        <button onclick="closeInAppMapModal()" class="w-full py-2.5 text-xs bg-slate-800 hover:bg-slate-900 active:scale-95 font-bold rounded-xl text-white shadow transition">
+          지도 닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- 🚗 10/18 후라노 인근 추천 드라이브 코스 팝업 모달 -->
   <div id="furanoDriveRouteModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-3 hidden backdrop-blur-sm transition-opacity duration-200">
     <div class="bg-white rounded-3xl w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl border border-indigo-100 overflow-hidden">
@@ -522,7 +563,6 @@
 
       <!-- 모달 본문 (SVG 맵 + 코스 상세 리스트) -->
       <div class="p-4 overflow-y-auto space-y-4 flex-1 text-xs">
-        <!-- SVG 드라이브 루트 맵 그래픽 -->
         <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200 relative overflow-hidden shadow-inner">
           <div class="flex justify-between items-center mb-1 text-[11px]">
             <span class="font-extrabold text-slate-700 flex items-center gap-1"><span>🗺️</span> 후라노 ➔ 비에이 ➔ 대설산 순환 코스도</span>
@@ -1113,7 +1153,6 @@
 
       <!-- 모달 본문 -->
       <div class="p-4 overflow-y-auto space-y-3.5 flex-1 text-xs">
-        <!-- 1. 카드 교환 & 대여 방법 -->
         <div class="bg-indigo-50/70 p-3.5 rounded-2xl border border-indigo-100 space-y-2">
           <div class="flex items-center gap-1.5 text-indigo-900 font-black text-xs">
             <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px]">1</span>
@@ -1133,7 +1172,6 @@
           </div>
         </div>
 
-        <!-- 2. 도로 주행 3대 수칙 -->
         <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 space-y-2">
           <div class="flex items-center gap-1.5 text-slate-900 font-black text-xs">
             <span class="w-5 h-5 rounded-full bg-slate-800 text-white flex items-center justify-center text-[10px]">2</span>
@@ -1166,7 +1204,6 @@
           </div>
         </div>
 
-        <!-- 3. 주차의 정석 (잠시 멈춤 vs 최종 반납) -->
         <div class="bg-amber-50/60 p-3.5 rounded-2xl border border-amber-200 space-y-2">
           <div class="flex items-center gap-1.5 text-amber-950 font-black text-xs">
             <span class="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center text-[10px]">3</span>
@@ -1174,7 +1211,6 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
-            <!-- 일시 정지 -->
             <div class="bg-white p-2.5 rounded-xl border border-slate-200">
               <div class="font-bold text-slate-800 flex items-center gap-1 mb-1">
                 <span>⏸️</span><span>일시 정지 (Pause)</span>
@@ -1186,7 +1222,6 @@
               </div>
             </div>
 
-            <!-- 완전 반납 -->
             <div class="bg-white p-2.5 rounded-xl border border-rose-300">
               <div class="font-bold text-rose-700 flex items-center gap-1 mb-1">
                 <span>🔄</span><span>완전 반납 (Return)</span>
@@ -1263,9 +1298,8 @@
         <input type="text" id="modalName" placeholder="예: 비에이 준페이, 징기스칸 다루마" class="w-full border rounded-xl p-2.5 text-sm" />
       </div>
       <div>
-        <label class="block text-xs font-semibold text-slate-500 mb-1">구글 지도 링크 (선택)</label>
-        <input type="text" id="modalMapUrl" placeholder="장소 링크를 복사해 주세요" class="w-full border rounded-xl p-2.5 text-sm text-slate-700 placeholder:text-slate-400 placeholder:opacity-60 bg-slate-50" />
-        <p class="text-[10px] text-slate-400 mt-1">구글 지도 앱에서 [공유 ➔ 링크 복사]한 URL을 붙여넣으면 정확한 핀으로 연결됩니다.</p>
+        <label class="block text-xs font-semibold text-slate-500 mb-1">구글 지도 검색어 (선택)</label>
+        <input type="text" id="modalMapUrl" placeholder="비워두면 장소명으로 자동 검색됩니다" class="w-full border rounded-xl p-2.5 text-sm text-slate-700 placeholder:text-slate-400 placeholder:opacity-60 bg-slate-50" />
       </div>
       <div>
         <label class="block text-xs font-semibold text-slate-500 mb-1">메모 (선택)</label>
@@ -1533,9 +1567,9 @@
       <div id="detailContentBody" class="space-y-3 overflow-y-auto flex-1 pr-1 text-xs"></div>
 
       <div class="pt-2 border-t border-slate-100 flex gap-2">
-        <a id="detailMapBtn" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 text-center text-xs bg-indigo-50 text-indigo-700 font-bold rounded-xl border border-indigo-200 hover:bg-indigo-100 transition">
-          📍 구글 지도 열기
-        </a>
+        <button type="button" id="detailMapBtn" class="flex-1 py-2 text-center text-xs bg-indigo-50 text-indigo-700 font-bold rounded-xl border border-indigo-200 hover:bg-indigo-100 transition">
+          📍 앱 내 지도 보기
+        </button>
         <button onclick="closeSpotDetailModal()" class="flex-1 py-2 text-xs bg-slate-800 font-bold rounded-xl text-white hover:bg-slate-900 transition">
           확인
         </button>
@@ -1544,7 +1578,7 @@
   </div>
 
   <!-- 토스트 안내 메시지 -->
-  <div id="appToast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900/90 text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none">
+  <div id="appToast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-70 bg-slate-900/90 text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none">
     알림 메시지
   </div>
 
@@ -1576,6 +1610,112 @@
 
   <!-- 2. 전체 앱 로직 스크립트 -->
   <script>
+    /* ========================================================
+       0. 인앱 구글 지도 뷰어 (WebView intent:// 에러 원천 차단)
+       ======================================================== */
+    let currentActiveMapPlaceName = "";
+
+    function extractCleanSearchQuery(rawName, rawUrl) {
+      // 괄호 안의 부연 설명 제거하여 구글 지도 검색 정확도 향상 (예: "(예약가능)", "(북쪽 / 차량 약 30~40분)" 등)
+      let cleanName = (rawName || '')
+        .replace(/\(예약가능\)/g, '')
+        .replace(/\(북쪽.*?\)/g, '')
+        .replace(/\(해발.*?\)/g, '')
+        .trim();
+
+      if (rawUrl && rawUrl.includes('q=')) {
+        try {
+          const urlObj = new URL(rawUrl);
+          const qParam = urlObj.searchParams.get('q');
+          if (qParam) {
+            return `${qParam} (${cleanName})`;
+          }
+        } catch (e) {}
+      }
+      return cleanName + " Hokkaido Japan";
+    }
+
+    function openInAppMap(placeName, mode = 'location', rawUrl = '') {
+      currentActiveMapPlaceName = placeName.replace(/\(예약가능\)/g, '').trim();
+
+      const modal = document.getElementById('inAppMapModal');
+      const titleEl = document.getElementById('inAppMapTitle');
+      const badgeEl = document.getElementById('inAppMapBadge');
+      const hintEl = document.getElementById('inAppMapSubHint');
+      const iframeEl = document.getElementById('inAppMapIframe');
+
+      if (titleEl) titleEl.innerText = currentActiveMapPlaceName;
+
+      if (badgeEl) {
+        if (mode === 'walk') {
+          badgeEl.innerText = '🚶 도보길 확인';
+          badgeEl.className = 'text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 shrink-0';
+        } else if (mode === 'drive') {
+          badgeEl.innerText = '🚗 운전경로 확인';
+          badgeEl.className = 'text-[10px] font-black px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 shrink-0';
+        } else {
+          badgeEl.innerText = '📍 스팟 위치';
+          badgeEl.className = 'text-[10px] font-black px-2 py-0.5 rounded-full bg-white text-indigo-700 shrink-0';
+        }
+      }
+
+      if (hintEl) {
+        if (mode === 'walk' || mode === 'drive') {
+          hintEl.innerText = '지도 내 [길찾기]를 누르거나 우측 [장소명 복사]를 활용하세요.';
+        } else {
+          hintEl.innerText = '두 손가락으로 지도를 확대/축소하여 주변 위치를 확인하세요.';
+        }
+      }
+
+      const searchQuery = extractCleanSearchQuery(placeName, rawUrl);
+      // output=embed 방식은 구글 서버가 절대 intent://로 리다이렉트하지 않으므로 모든 안드로이드 웹뷰에서 100% 정상 표시됩니다.
+      const safeEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(searchQuery)}&t=m&z=15&output=embed&iwloc=near`;
+
+      if (iframeEl) {
+        iframeEl.src = safeEmbedUrl;
+      }
+
+      if (modal) {
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function closeInAppMapModal() {
+      const modal = document.getElementById('inAppMapModal');
+      const iframeEl = document.getElementById('inAppMapIframe');
+      if (modal) modal.classList.add('hidden');
+      if (iframeEl) iframeEl.src = 'about:blank';
+    }
+
+    function copyCurrentMapPlaceName() {
+      if (!currentActiveMapPlaceName) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(currentActiveMapPlaceName).then(() => {
+          showToast(`'${currentActiveMapPlaceName}' 복사 완료!`);
+        }).catch(() => {
+          fallbackCopyText(currentActiveMapPlaceName);
+        });
+      } else {
+        fallbackCopyText(currentActiveMapPlaceName);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast(`'${text}' 복사 완료!`);
+      } catch (e) {
+        showToast('복사 실패');
+      }
+      document.body.removeChild(ta);
+    }
+
     /* ========================================================
        1. 모달 제어 함수군 (팝업 열기 / 닫기)
        ======================================================== */
@@ -1668,8 +1808,12 @@
       if (catBadge) catBadge.innerText = catText;
       if (nameEl) nameEl.innerText = spot.name;
 
-      const mapLink = spot.mapUrl || `https://www.google.com/maps/search/?q=${encodeURIComponent(spot.name)}`;
-      if (mapBtn) mapBtn.href = mapLink;
+      if (mapBtn) {
+        mapBtn.onclick = () => {
+          closeSpotDetailModal();
+          openInAppMap(spot.name, 'location', spot.mapUrl || '');
+        };
+      }
 
       let contentHtml = '';
       if (spot.reason || spot.family) {
@@ -1705,7 +1849,7 @@
       } else {
         contentHtml += `
           <div class="py-6 text-center text-slate-400 bg-slate-50 rounded-2xl border border-dashed">
-            등록된 상세 메모가 없습니다.<br>하단의 [📍 구글 지도 열기]로 현장 정보를 확인하세요.
+            등록된 상세 메모가 없습니다.<br>하단의 [📍 앱 내 지도 보기]로 위치를 확인하세요.
           </div>
         `;
       }
@@ -2556,7 +2700,7 @@
           name: '드레모 르타오 (Doremo LeTAO)',
           reason: '1,600평 규모의 대형 르타오 플래그십 매장으로 입에서 녹는 즉석 수플레 팬케이크가 명물입니다.',
           family: '공항 및 렌터카 반납점 바로 인근에 있어 마지막 선물용 디저트 쇼핑과 휴식을 겸하기 좋습니다.',
-          mapUrl: 'https://maps.google.com/maps/search/?q=Doremo+LeTAO+Chitose' 
+          mapUrl: 'https://www.google.com/maps/search/?q=Doremo+LeTAO+Chitose' 
         }
       ]
     };
@@ -2580,15 +2724,12 @@
       const memo = document.getElementById('modalMemo').value.trim();
 
       let directUrl = "";
-      if (rawMapUrl.startsWith("http://") || rawMapUrl.startsWith("https://")) {
+      if (rawMapUrl) {
         directUrl = rawMapUrl;
-      } else if (name.startsWith("http://") || name.startsWith("https://")) {
-        directUrl = name;
-        name = "추가된 장소";
       }
 
       if (!name && !directUrl) {
-        showToast('장소명 또는 구글 지도 링크를 입력해주세요.');
+        showToast('장소명을 입력해주세요.');
         return;
       }
       if (!name) name = "추가된 스팟";
@@ -2651,12 +2792,10 @@
           const catLabel = s.category === 'lunch' ? '🍱 점심' : s.category === 'dinner' ? '🍽️ 저녁' : '📍 명소/카페';
           const catBadgeClass = s.category === 'lunch' ? 'bg-emerald-50 text-emerald-700' : s.category === 'dinner' ? 'bg-indigo-50 text-indigo-700' : 'bg-sky-50 text-sky-700';
 
-          const targetUrl = s.mapUrl ? s.mapUrl : `https://www.google.com/maps/search/?q=${encodeURIComponent(s.name)}`;
-          const walkUrl = `https://www.google.com/maps/search/?q=${encodeURIComponent(s.name)}`;
-          const driveUrl = `https://www.google.com/maps/search/?q=${encodeURIComponent(s.name)}`;
-
           const isFirst = idx === 0;
           const isLast = idx === spots.length - 1;
+          const escapedName = s.name.replace(/'/g, "\\'");
+          const escapedMapUrl = (s.mapUrl || '').replace(/'/g, "\\'");
 
           return `
             <div id="card-${s.id}" data-day="${dayKey}" data-index="${idx}" class="spot-card-item bg-white p-3 rounded-2xl border border-slate-200 shadow-2xs hover:border-indigo-300 transition-all duration-150 relative">
@@ -2669,7 +2808,7 @@
                   <span class="text-slate-300 text-xs font-black select-none cursor-grab active:cursor-grabbing px-0.5" title="1초간 꾹 눌러 위·아래 드래그">⠿</span>
                   <span class="text-[10px] font-bold px-2 py-0.5 rounded-md ${catBadgeClass}">${catLabel}</span>
                 </div>
-                <button onclick="promptDeleteSpot('${dayKey}', '${s.id}', '${s.name.replace(/'/g, "\\'")}')" class="text-slate-400 hover:text-rose-600 hover:bg-rose-50 px-2 py-0.5 rounded-lg text-xs font-bold transition flex items-center gap-0.5" title="삭제">
+                <button onclick="promptDeleteSpot('${dayKey}', '${s.id}', '${escapedName}')" class="text-slate-400 hover:text-rose-600 hover:bg-rose-50 px-2 py-0.5 rounded-lg text-xs font-bold transition flex items-center gap-0.5" title="삭제">
                   <span>✕</span><span class="text-[10px]">삭제</span>
                 </button>
               </div>
@@ -2682,10 +2821,10 @@
               </div>
 
               <div class="flex justify-end gap-1 mt-2.5 pt-2 border-t border-slate-100">
-                <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-lg border border-slate-200 font-semibold shadow-2xs">📍 위치</a>
-                <a href="${walkUrl}" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-lg font-bold shadow-2xs">🚶 도보길</a>
-                <a href="${driveUrl}" target="_blank" rel="noopener noreferrer" class="px-2 py-1 text-xs bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-lg font-bold shadow-2xs">🚗 운전경로</a>
-                <button onclick="openGallery('${s.id}', '${s.name.replace(/'/g, "\\'")}')" class="px-2 py-1 text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-lg border border-indigo-200 font-bold flex items-center gap-0.5">
+                <button type="button" onclick="openInAppMap('${escapedName}', 'location', '${escapedMapUrl}')" class="px-2 py-1 text-xs bg-slate-50 hover:bg-slate-100 active:scale-95 text-slate-700 rounded-lg border border-slate-200 font-semibold shadow-2xs transition">📍 위치</button>
+                <button type="button" onclick="openInAppMap('${escapedName}', 'walk', '${escapedMapUrl}')" class="px-2 py-1 text-xs bg-emerald-50 hover:bg-emerald-100 active:scale-95 text-emerald-700 border border-emerald-200 rounded-lg font-bold shadow-2xs transition">🚶 도보길</button>
+                <button type="button" onclick="openInAppMap('${escapedName}', 'drive', '${escapedMapUrl}')" class="px-2 py-1 text-xs bg-blue-50 hover:bg-blue-100 active:scale-95 text-blue-700 border border-blue-200 rounded-lg font-bold shadow-2xs transition">🚗 운전경로</button>
+                <button onclick="openGallery('${s.id}', '${escapedName}')" class="px-2 py-1 text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-lg border border-indigo-200 font-bold flex items-center gap-0.5">
                   <span>📸</span><span id="badge-${s.id}">0</span>
                 </button>
               </div>
@@ -3023,7 +3162,6 @@
       if (secBudget) secBudget.classList.add('hidden');
       if (secMemo) secMemo.classList.add('hidden');
 
-      // 탭 기본 비활성화 스타일
       [tabItinBtn, tabCheckBtn, tabBudgetBtn, tabMemoBtn].forEach(b => {
         if (b) b.className = "flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent font-bold transition-colors";
       });
@@ -3315,6 +3453,9 @@
     }
 
     /* 전역 window 바인딩 (인라인 onclick 안전성 보장) */
+    window.openInAppMap = openInAppMap;
+    window.closeInAppMapModal = closeInAppMapModal;
+    window.copyCurrentMapPlaceName = copyCurrentMapPlaceName;
     window.openAddSpotModal = openAddSpotModal;
     window.closeAddSpotModal = closeAddSpotModal;
     window.openAddCheckModal = openAddCheckModal;
@@ -3349,15 +3490,6 @@
     window.saveNewExpense = saveNewExpense;
     window.saveAndRenderBalances = saveAndRenderBalances;
     window.initCloudRealtimeSync = initCloudRealtimeSync;
-
-    /* PWA 설치 이벤트 제어 */
-    window.addEventListener('beforeinstallprompt', (e) => {
-      console.log('PWA installation prompt ready');
-    });
-
-    window.addEventListener('appinstalled', () => {
-      showToast('26년 삿포로 여행 앱이 정상 설치되었습니다!');
-    });
 
     window.addEventListener('DOMContentLoaded', () => {
       renderChecklist();
