@@ -518,9 +518,13 @@
       <!-- 안내 & 복사 툴바 -->
       <div class="px-3.5 py-2 bg-indigo-50 border-b border-indigo-100 flex items-center justify-between gap-2 text-[11px]">
         <span class="text-indigo-900 font-semibold truncate" id="inAppMapSubHint">지도를 두 손가락으로 확대/축소하여 위치를 확인하세요.</span>
-        <button onclick="copyCurrentMapPlaceName()" class="px-2.5 py-1 bg-white hover:bg-indigo-100 active:scale-95 text-indigo-700 font-extrabold rounded-lg border border-indigo-200 shadow-2xs shrink-0 flex items-center gap-1 transition">
-          <span>📋</span><span>장소명 복사</span>
-        </button>
+        <div class="flex items-center gap-1 shrink-0">
+          <button onclick="switchInAppMapMode('location')" id="btnMapModeLoc" class="px-2 py-1 bg-indigo-600 text-white font-extrabold rounded-lg text-[10px] transition">📍 단일위치</button>
+          <button onclick="switchInAppMapMode('drive')" id="btnMapModeDrive" class="px-2 py-1 bg-white text-indigo-700 border border-indigo-200 font-extrabold rounded-lg text-[10px] transition">🚗 운전경로</button>
+          <button onclick="copyCurrentMapPlaceName()" class="px-2 py-1 bg-white hover:bg-indigo-100 active:scale-95 text-slate-700 font-extrabold rounded-lg border border-slate-300 shadow-2xs shrink-0 flex items-center gap-0.5 transition text-[10px]">
+            <span>📋</span><span>복사</span>
+          </button>
+        </div>
       </div>
 
       <!-- 구글 지도 iframe 영역 (intent:// 리다이렉트가 절대 발생하지 않는 output=embed 방식) -->
@@ -1614,6 +1618,21 @@
        0. 인앱 구글 지도 뷰어 (WebView intent:// 에러 원천 차단)
        ======================================================== */
     let currentActiveMapPlaceName = "";
+    let currentActiveRawUrl = "";
+    let currentActiveDayOrigin = "Sapporo Station Hokkaido Japan";
+
+    function getDayBaseOrigin() {
+      if (typeof currentSelectedDay !== 'undefined') {
+        if (currentSelectedDay === 'day-1' || currentSelectedDay === 'day-2') {
+          return "Holiday Inn & Suites Sapporo Odori Park";
+        } else if (currentSelectedDay === 'day-3' || currentSelectedDay === 'day-4') {
+          return "La Vista Furano Hills Hot Springs";
+        } else if (currentSelectedDay === 'day-5') {
+          return "New Chitose Airport Hokkaido";
+        }
+      }
+      return "Sapporo Station Hokkaido";
+    }
 
     function extractCleanSearchQuery(rawName, rawUrl) {
       // 괄호 안의 부연 설명 제거하여 구글 지도 검색 정확도 향상 (예: "(예약가능)", "(북쪽 / 차량 약 30~40분)" 등)
@@ -1637,46 +1656,62 @@
 
     function openInAppMap(placeName, mode = 'location', rawUrl = '') {
       currentActiveMapPlaceName = placeName.replace(/\(예약가능\)/g, '').trim();
+      currentActiveRawUrl = rawUrl || '';
+      currentActiveDayOrigin = getDayBaseOrigin();
 
       const modal = document.getElementById('inAppMapModal');
       const titleEl = document.getElementById('inAppMapTitle');
+
+      if (titleEl) titleEl.innerText = currentActiveMapPlaceName;
+      if (modal) modal.classList.remove('hidden');
+
+      switchInAppMapMode(mode);
+    }
+
+    function switchInAppMapMode(mode) {
       const badgeEl = document.getElementById('inAppMapBadge');
       const hintEl = document.getElementById('inAppMapSubHint');
       const iframeEl = document.getElementById('inAppMapIframe');
+      const btnLoc = document.getElementById('btnMapModeLoc');
+      const btnDrive = document.getElementById('btnMapModeDrive');
 
-      if (titleEl) titleEl.innerText = currentActiveMapPlaceName;
+      const destQuery = extractCleanSearchQuery(currentActiveMapPlaceName, currentActiveRawUrl);
+      let safeEmbedUrl = "";
 
-      if (badgeEl) {
-        if (mode === 'walk') {
-          badgeEl.innerText = '🚶 도보길 확인';
-          badgeEl.className = 'text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 shrink-0';
-        } else if (mode === 'drive') {
-          badgeEl.innerText = '🚗 운전경로 확인';
-          badgeEl.className = 'text-[10px] font-black px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 shrink-0';
+      if (mode === 'drive' || mode === 'walk') {
+        if (badgeEl) {
+          badgeEl.innerText = mode === 'walk' ? '🚶 도보 경로' : '🚗 운전 경로';
+          badgeEl.className = 'text-[10px] font-black px-2 py-0.5 rounded-full bg-amber-300 text-slate-950 shrink-0';
+        }
+        if (hintEl) {
+          hintEl.innerText = '거점 호텔 기준 경로입니다. (지도 내 파란 버튼 클릭 금지)';
+        }
+        if (btnLoc) btnLoc.className = "px-2 py-1 bg-white text-indigo-700 border border-indigo-200 font-extrabold rounded-lg text-[10px] transition";
+        if (btnDrive) btnDrive.className = "px-2 py-1 bg-indigo-600 text-white font-extrabold rounded-lg text-[10px] transition";
+
+        const dirFlg = mode === 'walk' ? 'w' : 'd';
+        // saddr(출발지)와 daddr(목적지) 및 output=embed 조합으로 웹뷰 내에서도 경로 라인을 즉시 렌더링
+        if (currentActiveDayOrigin.toLowerCase().includes(currentActiveMapPlaceName.toLowerCase())) {
+          safeEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(destQuery)}&t=m&z=15&output=embed&iwloc=near`;
         } else {
+          safeEmbedUrl = `https://maps.google.com/maps?saddr=${encodeURIComponent(currentActiveDayOrigin)}&daddr=${encodeURIComponent(destQuery)}&dirflg=${dirFlg}&output=embed`;
+        }
+      } else {
+        if (badgeEl) {
           badgeEl.innerText = '📍 스팟 위치';
           badgeEl.className = 'text-[10px] font-black px-2 py-0.5 rounded-full bg-white text-indigo-700 shrink-0';
         }
-      }
-
-      if (hintEl) {
-        if (mode === 'walk' || mode === 'drive') {
-          hintEl.innerText = '지도 내 [길찾기]를 누르거나 우측 [장소명 복사]를 활용하세요.';
-        } else {
-          hintEl.innerText = '두 손가락으로 지도를 확대/축소하여 주변 위치를 확인하세요.';
+        if (hintEl) {
+          hintEl.innerText = '두 손가락으로 확대/축소하세요. (상단 큰지도 버튼 클릭 금지)';
         }
-      }
+        if (btnLoc) btnLoc.className = "px-2 py-1 bg-indigo-600 text-white font-extrabold rounded-lg text-[10px] transition";
+        if (btnDrive) btnDrive.className = "px-2 py-1 bg-white text-indigo-700 border border-indigo-200 font-extrabold rounded-lg text-[10px] transition";
 
-      const searchQuery = extractCleanSearchQuery(placeName, rawUrl);
-      // output=embed 방식은 구글 서버가 절대 intent://로 리다이렉트하지 않으므로 모든 안드로이드 웹뷰에서 100% 정상 표시됩니다.
-      const safeEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(searchQuery)}&t=m&z=15&output=embed&iwloc=near`;
+        safeEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(destQuery)}&t=m&z=15&output=embed&iwloc=near`;
+      }
 
       if (iframeEl) {
         iframeEl.src = safeEmbedUrl;
-      }
-
-      if (modal) {
-        modal.classList.remove('hidden');
       }
     }
 
@@ -1732,6 +1767,10 @@
 
     function openAddSpotModal() { 
       const modal = document.getElementById('addSpotModal');
+      const dateSelect = document.getElementById('modalDate');
+      if (dateSelect && typeof currentSelectedDay !== 'undefined') {
+        dateSelect.value = currentSelectedDay;
+      }
       if (modal) modal.classList.remove('hidden'); 
     }
     function closeAddSpotModal() { 
@@ -2746,6 +2785,13 @@
       dynamicSpots[dayKey].push(newSpot);
       localStorage.setItem('sapporo_dynamic_spots_v22', JSON.stringify(dynamicSpots));
       renderDynamicSpots();
+      
+      // 추가한 스팟의 날짜 탭으로 자동 포커스 동기화
+      const targetPill = document.getElementById(`pill-${dayKey}`);
+      if (targetPill && currentSelectedDay !== dayKey) {
+        selectDay(dayKey, targetPill);
+      }
+
       pushDataToCloud('spots', { spotsByDay: dynamicSpots });
       closeAddSpotModal();
       showToast('새 스팟이 추가되었습니다.');
@@ -3454,6 +3500,7 @@
 
     /* 전역 window 바인딩 (인라인 onclick 안전성 보장) */
     window.openInAppMap = openInAppMap;
+    window.switchInAppMapMode = switchInAppMapMode;
     window.closeInAppMapModal = closeInAppMapModal;
     window.copyCurrentMapPlaceName = copyCurrentMapPlaceName;
     window.openAddSpotModal = openAddSpotModal;
