@@ -208,9 +208,19 @@
       <!-- 3일차 -->
       <section id="day-3" class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hidden">
         <div class="bg-indigo-50/70 p-4 border-b border-indigo-100">
-          <span class="text-[11px] font-black text-indigo-600 uppercase">DAY 3</span>
-          <h2 class="text-base font-bold text-slate-800">10/17 (토) 렌터카 수령 ➔ 후라노 이동</h2>
-          <p class="text-xs text-slate-500">09:00 차량 인수 ➔ 11:00 체크아웃 ➔ 15:00 후라노 체크인</p>
+          <div class="flex items-center justify-between gap-2 flex-wrap">
+            <div>
+              <span class="text-[11px] font-black text-indigo-600 uppercase">DAY 3</span>
+              <h2 class="text-base font-bold text-slate-800">10/17 (토) 렌터카 수령 ➔ 후라노 이동</h2>
+            </div>
+            <!-- 후라노 이동 코스 팝업 버튼 -->
+            <div class="flex items-center justify-end gap-1.5 shrink-0">
+              <button onclick="openFuranoTransferRouteModal()" class="bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-extrabold px-2.5 py-1.5 rounded-xl shadow-xs flex items-center gap-1 transition border border-indigo-400" title="삿포로 ➔ 미카사 ➔ 가쓰라자와호 ➔ 후라노 이동 코스도 열기">
+                <span>🚗</span><span>후라노 이동 코스</span>
+              </button>
+            </div>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">09:00 차량 인수 ➔ 11:00 체크아웃 ➔ 15:00 후라노 체크인</p>
         </div>
         <div class="p-4 space-y-3">
           <div class="bg-blue-50/70 p-3 rounded-xl border border-blue-200">
@@ -268,9 +278,19 @@
       <!-- 5일차 -->
       <section id="day-5" class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hidden">
         <div class="bg-indigo-50/70 p-4 border-b border-indigo-100">
-          <span class="text-[11px] font-black text-indigo-600 uppercase">DAY 5</span>
-          <h2 class="text-base font-bold text-slate-800">10/19 (월) 렌터카 반납 & 김해 귀국</h2>
-          <p class="text-xs text-slate-500">11:00 체크아웃 ➔ 16:00 렌터카 반납 ➔ 18:20 탑승(ZE952) ➔ 21:00 김해 도착</p>
+          <div class="flex items-center justify-between gap-2 flex-wrap">
+            <div>
+              <span class="text-[11px] font-black text-indigo-600 uppercase">DAY 5</span>
+              <h2 class="text-base font-bold text-slate-800">10/19 (월) 렌터카 반납 & 김해 귀국</h2>
+            </div>
+            <!-- 복귀 이동 코스 팝업 버튼 -->
+            <div class="flex items-center justify-end gap-1.5 shrink-0">
+              <button onclick="openReturnRouteModal()" class="bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-extrabold px-2.5 py-1.5 rounded-xl shadow-xs flex items-center gap-1 transition border border-indigo-400" title="후라노 ➔ 가나야마 댐 ➔ 치토세 ➔ 공항 렌터카 반납 코스도 열기">
+                <span>🚗</span><span>복귀 이동 코스</span>
+              </button>
+            </div>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">11:00 체크아웃 ➔ 16:00 렌터카 반납 ➔ 18:20 탑승(ZE952) ➔ 21:00 김해 도착</p>
         </div>
         <div class="p-4 space-y-3">
           <div class="bg-rose-50/70 p-3 rounded-xl border border-rose-200">
@@ -543,6 +563,466 @@
       <div class="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
         <button onclick="closeInAppMapModal()" class="w-full py-2.5 text-xs bg-slate-800 hover:bg-slate-900 active:scale-95 font-bold rounded-xl text-white shadow transition">
           지도 닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🚗 10/17 삿포로 ➔ 미카사 ➔ 후라노 이동 코스 팝업 모달 -->
+  <div id="furanoTransferRouteModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-3 hidden backdrop-blur-sm transition-opacity duration-200">
+    <div class="bg-white rounded-3xl w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl border border-indigo-100 overflow-hidden">
+      <!-- 모달 헤더 -->
+      <div class="p-4 border-b border-slate-100 bg-gradient-to-r from-indigo-50 to-blue-50 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-base font-bold shadow-xs">
+            🚗
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm sm:text-base text-slate-800">10/17 삿포로 ➔ 미카사 ➔ 후라노 이동 코스</h3>
+            <p class="text-[11px] text-indigo-600 font-bold">도오 자동차도(E5) & 국도 452/38호 경유 • 128 km • 약 2시간 21분</p>
+          </div>
+        </div>
+        <button onclick="closeFuranoTransferRouteModal()" class="text-slate-400 hover:text-slate-700 p-1.5 text-lg font-bold leading-none">✕</button>
+      </div>
+
+      <!-- 모달 본문 (SVG 맵 + 6개 거점 상세 리스트) -->
+      <div class="p-4 overflow-y-auto space-y-4 flex-1 text-xs">
+        <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200 relative overflow-hidden shadow-inner">
+          <div class="flex justify-between items-center mb-1 text-[11px]">
+            <span class="font-extrabold text-slate-700 flex items-center gap-1"><span>🗺️</span> 삿포로 ➔ 미카사 ➔ 후라노 횡단 코스도</span>
+            <span class="text-[10px] bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded-full">편도 드라이브 128km</span>
+          </div>
+          <svg viewBox="0 0 540 420" class="w-full h-auto max-h-[340px] select-none">
+            <defs>
+              <marker id="transferArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+              </marker>
+              <filter id="badgeShadowTrans" x="-10%" y="-10%" width="120%" height="130%">
+                <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-opacity="0.18"/>
+              </filter>
+            </defs>
+
+            <!-- 배경 베이스 -->
+            <rect x="0" y="0" width="540" height="420" fill="#f8fafc" rx="14"/>
+
+            <!-- 좌측 상단 이시카리만 바다 표현 -->
+            <path d="M 0 0 L 185 0 Q 170 110 120 190 Q 65 245 0 260 Z" fill="#bae6fd" stroke="#7dd3fc" stroke-width="1.5"/>
+            <text x="45" y="115" fill="#0369a1" font-size="11.5" font-weight="900">이시카리만 (石狩湾)</text>
+
+            <!-- 우측 산악 및 숲 지대 (유바리·아시베쓰 단풍 산악로) -->
+            <path d="M 270 140 Q 380 110 470 140 L 530 220 L 530 390 L 310 390 Z" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+            <text x="385" y="340" fill="#047857" font-size="11" font-weight="900">유바리·아시베쓰 산악 단풍 지대</text>
+
+            <!-- 가쓰라자와 호수 수면 표현 -->
+            <ellipse cx="328" cy="272" rx="22" ry="12" fill="#7dd3fc" stroke="#0284c7" stroke-width="1.2"/>
+
+            <!-- 고속도로 E5 (도오 자동차도) 북향 연장선 표시 -->
+            <path d="M 80 355 L 175 320 L 245 255 L 285 150 L 325 40" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="6,4"/>
+            <rect x="255" y="135" width="46" height="17" rx="4" fill="#16a34a"/>
+            <text x="278" y="147" fill="#ffffff" font-size="9.5" font-weight="900" text-anchor="middle">E5 고속</text>
+
+            <!-- 실제 파란색 주행 경로 라인 -->
+            <path d="M 80 355 L 165 325 L 220 290 L 258 258 L 282 262 L 325 272 L 365 235 L 402 195 L 435 182 L 465 198 L 492 190 L 505 202" fill="none" stroke="#2563eb" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" marker-mid="url(#transferArrow)"/>
+
+            <!-- 주행 시간 요약 뱃지 -->
+            <g transform="translate(210, 315)" filter="url(#badgeShadowTrans)">
+              <rect x="0" y="0" width="95" height="34" rx="6" fill="#ffffff" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="47" y="14" fill="#0f172a" font-size="10.5" font-weight="900" text-anchor="middle">🚗 2시간 21분</text>
+              <text x="47" y="27" fill="#475569" font-size="9.5" font-weight="bold" text-anchor="middle">총 128 km (유료도로)</text>
+            </g>
+
+            <!-- ① 홀리데이 인 & 스위트 삿포로 오도리 공원 (출발) -->
+            <g transform="translate(80, 355)">
+              <circle cx="0" cy="0" r="13" fill="#dc2626" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowTrans)"/>
+              <text x="0" y="4.5" fill="#fff" font-size="11" font-weight="900" text-anchor="middle">1</text>
+              <rect x="-65" y="16" width="175" height="24" rx="5" fill="#ffffff" stroke="#dc2626" stroke-width="1.5" filter="url(#badgeShadowTrans)"/>
+              <text x="22" y="32" fill="#b91c1c" font-size="10.5" font-weight="900" text-anchor="middle">① 홀리데이 인 삿포로 (출발)</text>
+            </g>
+
+            <!-- ② 미카사 철도기념관 (미카사 철도촌) -->
+            <g transform="translate(282, 262)">
+              <circle cx="0" cy="0" r="11" fill="#2563eb" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowTrans)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">2</text>
+              <rect x="-128" y="-28" width="122" height="22" rx="4" fill="#ffffff" stroke="#2563eb" stroke-width="1.3" filter="url(#badgeShadowTrans)"/>
+              <text x="-67" y="-13" fill="#1d4ed8" font-size="10.5" font-weight="900" text-anchor="middle">② 미카사 철도기념관</text>
+            </g>
+
+            <!-- ③ 가쓰라자와호 (桂沢ダム管理事務所) -->
+            <g transform="translate(328, 272)">
+              <circle cx="0" cy="0" r="11" fill="#059669" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowTrans)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">3</text>
+              <rect x="14" y="6" width="135" height="22" rx="4" fill="#ffffff" stroke="#059669" stroke-width="1.3" filter="url(#badgeShadowTrans)"/>
+              <text x="81" y="21" fill="#065f46" font-size="10.5" font-weight="900" text-anchor="middle">③ 가쓰라자와호 (단풍호수)</text>
+            </g>
+
+            <!-- ④ 산단타키 (산단 폭포) -->
+            <g transform="translate(402, 195)">
+              <circle cx="0" cy="0" r="11" fill="#0284c7" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowTrans)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">4</text>
+              <rect x="-118" y="-12" width="106" height="22" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="1.3" filter="url(#badgeShadowTrans)"/>
+              <text x="-65" y="3" fill="#0369a1" font-size="10.5" font-weight="900" text-anchor="middle">④ 산단타키 (폭포)</text>
+            </g>
+
+            <!-- ⑤ 캄파나 롯카테이 -->
+            <g transform="translate(485, 185)">
+              <circle cx="0" cy="0" r="11" fill="#7c3aed" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowTrans)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">5</text>
+              <rect x="-112" y="-32" width="115" height="22" rx="4" fill="#ffffff" stroke="#7c3aed" stroke-width="1.3" filter="url(#badgeShadowTrans)"/>
+              <text x="-54" y="-17" fill="#6d28d9" font-size="10.5" font-weight="900" text-anchor="middle">⑤ 캄파나 롯카테이</text>
+            </g>
+
+            <!-- ⑥ 도미인 프리미엄 라 비스타 후라노 힐스 (도착) -->
+            <g transform="translate(505, 208)">
+              <circle cx="0" cy="0" r="12" fill="#d97706" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowTrans)"/>
+              <text x="0" y="4.5" fill="#fff" font-size="11" font-weight="900" text-anchor="middle">6</text>
+              <rect x="-165" y="15" width="175" height="24" rx="5" fill="#ffffff" stroke="#d97706" stroke-width="1.5" filter="url(#badgeShadowTrans)"/>
+              <text x="-77" y="31" fill="#b45309" font-size="10.5" font-weight="900" text-anchor="middle">⑥ 라비스타 후라노 힐즈 (도착)</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- 6개 거점 상세 리스트 -->
+        <div class="space-y-2">
+          <div class="font-extrabold text-slate-800 text-xs flex items-center justify-between">
+            <span class="flex items-center gap-1"><span>🧭</span> 구글 맵 후라노 이동 코스 순서</span>
+            <span class="text-[10px] text-indigo-600 font-bold">총 6개 거점 • 128km</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-1.5 text-[11px]">
+            <div class="p-2.5 rounded-xl bg-rose-50/70 border border-rose-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-rose-600 text-white font-black text-[10px] flex items-center justify-center shrink-0">1</span>
+                <div>
+                  <div class="font-bold text-slate-800">홀리데이 인 & 스위트 삿포로 오도리 공원 (출발)</div>
+                  <div class="text-[10.5px] text-rose-700">09:00 니폰렌트카 수령 후 짐 적재 ➔ 도오 자동차도(E5) 북상</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-rose-700 font-bold border border-rose-200">출발</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-blue-50/70 border border-blue-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">2</span>
+                <div>
+                  <div class="font-bold text-slate-800">미카사 철도기념관 (미카사 철도촌)</div>
+                  <div class="text-[10.5px] text-blue-700">실제 증기기관차(SL) 전시 및 300m 왕복 기관차 탑승 체험</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-blue-700 font-bold border border-blue-200">체험</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">3</span>
+                <div>
+                  <div class="font-bold text-slate-800">가쓰라자와호 (桂沢ダム管理事務所)</div>
+                  <div class="text-[10.5px] text-emerald-700">호수 수면 위로 비치는 10월의 화려한 단풍 드라이브 명소</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-emerald-700 font-bold border border-emerald-200">단풍호수</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-sky-50/70 border border-sky-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-sky-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">4</span>
+                <div>
+                  <div class="font-bold text-slate-800">산단타키 (三段滝 / 산단 폭포)</div>
+                  <div class="text-[10.5px] text-sky-700">3단 바위 계단을 호쾌하게 쏟아져 내리는 단풍 계곡 폭포 (주차장 바로 옆)</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-sky-700 font-bold border border-sky-200">자연경관</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-purple-50/70 border border-purple-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-purple-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">5</span>
+                <div>
+                  <div class="font-bold text-slate-800">캄파나 롯카테이 (カンパーナ六花亭)</div>
+                  <div class="text-[10.5px] text-purple-700">포도밭 언덕 위에서 도카치다케 연봉을 바라보며 후라노 한정 디저트 휴식</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-purple-700 font-bold border border-purple-200">디저트</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-amber-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">6</span>
+                <div>
+                  <div class="font-bold text-slate-800">도미인 프리미엄 라 비스타 후라노 힐스 (도착)</div>
+                  <div class="text-[10.5px] text-amber-800">15:00 체크인 ➔ 천연 온천욕 휴식 & 도보권(쿠마게라/유이가도쿠손) 저녁 만찬</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-amber-600 text-white px-2 py-0.5 rounded-md font-bold">체크인</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 모달 하단 닫기 버튼 -->
+      <div class="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-end">
+        <button onclick="closeFuranoTransferRouteModal()" class="w-full py-2.5 text-xs bg-indigo-600 hover:bg-indigo-700 active:scale-95 font-bold rounded-xl text-white shadow transition">
+          닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🚗 10/19 후라노 ➔ 가나야마 댐 ➔ 치토세 ➔ 공항 렌터카 반납 복귀 코스 팝업 모달 -->
+  <div id="returnRouteModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-3 hidden backdrop-blur-sm transition-opacity duration-200">
+    <div class="bg-white rounded-3xl w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl border border-indigo-100 overflow-hidden">
+      <!-- 모달 헤더 -->
+      <div class="p-4 border-b border-slate-100 bg-gradient-to-r from-indigo-50 to-blue-50 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-base font-bold shadow-xs">
+            🚗
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm sm:text-base text-slate-800">10/19 후라노 ➔ 치토세 ➔ 공항 복귀 코스</h3>
+            <p class="text-[11px] text-indigo-600 font-bold">아사히도리 & 유료도로 경유 • 147 km • 주행 약 2시간 39분</p>
+          </div>
+        </div>
+        <button onclick="closeReturnRouteModal()" class="text-slate-400 hover:text-slate-700 p-1.5 text-lg font-bold leading-none">✕</button>
+      </div>
+
+      <!-- 모달 본문 (SVG 맵 + 9개 거점 상세 리스트) -->
+      <div class="p-4 overflow-y-auto space-y-4 flex-1 text-xs">
+        <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200 relative overflow-hidden shadow-inner">
+          <div class="flex justify-between items-center mb-1 text-[11px]">
+            <span class="font-extrabold text-slate-700 flex items-center gap-1"><span>🗺️</span> 후라노 ➔ 가나야마 댐 ➔ 신치토세 공항 복귀도</span>
+            <span class="text-[10px] bg-rose-100 text-rose-800 font-bold px-2 py-0.5 rounded-full">복귀 드라이브 147km</span>
+          </div>
+          <svg viewBox="0 0 540 480" class="w-full h-auto max-h-[370px] select-none">
+            <defs>
+              <marker id="returnArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+              </marker>
+              <filter id="badgeShadowReturn" x="-10%" y="-10%" width="120%" height="130%">
+                <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-opacity="0.18"/>
+              </filter>
+            </defs>
+
+            <!-- 배경 베이스 -->
+            <rect x="0" y="0" width="540" height="480" fill="#f8fafc" rx="14"/>
+
+            <!-- 좌측 상단 이시카리만 바다 표현 -->
+            <path d="M 0 0 L 210 0 Q 195 110 140 190 Q 75 235 0 245 Z" fill="#bae6fd" stroke="#7dd3fc" stroke-width="1.5"/>
+            <text x="55" y="105" fill="#0369a1" font-size="11" font-weight="900">이시카리만 (石狩湾)</text>
+
+            <!-- 좌측 하단 시코쓰토야 국립공원 및 시코쓰호 -->
+            <path d="M 30 350 Q 110 330 165 380 T 140 465 L 20 465 Z" fill="#dcfce7" stroke="#86efac" stroke-width="1.5"/>
+            <ellipse cx="115" cy="395" rx="22" ry="13" fill="#7dd3fc" stroke="#0284c7" stroke-width="1"/>
+            <text x="95" y="428" fill="#15803d" font-size="10" font-weight="900" text-anchor="middle">시코쓰토야 국립공원</text>
+
+            <!-- 삿포로시 참고 위치 표시 -->
+            <circle cx="155" cy="255" r="5" fill="#94a3b8"/>
+            <text x="155" y="243" fill="#64748b" font-size="10.5" font-weight="bold" text-anchor="middle">삿포로시</text>
+
+            <!-- 가나야마 호수(댐) 수면 표현 -->
+            <ellipse cx="478" cy="222" rx="18" ry="10" fill="#7dd3fc" stroke="#0284c7" stroke-width="1.2"/>
+
+            <!-- 참고 고속도로 망 (점선) -->
+            <path d="M 155 255 L 225 320 L 250 385 L 255 460" fill="none" stroke="#cbd5e1" stroke-width="3.5" stroke-dasharray="5,4"/>
+            <rect x="235" y="420" width="38" height="16" rx="4" fill="#3b82f6"/>
+            <text x="254" y="431" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">국도36</text>
+
+            <!-- 실제 파란색 복귀 주행 경로 라인 -->
+            <path d="M 455 95 L 448 112 L 452 135 L 468 220 L 458 295 L 365 322 L 295 342 L 242 368 L 248 380 L 265 398" fill="none" stroke="#2563eb" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" marker-mid="url(#returnArrow)"/>
+
+            <!-- 주행 시간 요약 뱃지 -->
+            <g transform="translate(275, 272)" filter="url(#badgeShadowReturn)">
+              <rect x="0" y="0" width="98" height="34" rx="6" fill="#ffffff" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="49" y="14" fill="#0f172a" font-size="10.5" font-weight="900" text-anchor="middle">🚗 2시간 39분</text>
+              <text x="49" y="27" fill="#475569" font-size="9.5" font-weight="bold" text-anchor="middle">총 147 km (유료도로)</text>
+            </g>
+
+            <!-- ① 도미인 프리미엄 라 비스타 후라노 힐스 (출발) -->
+            <g transform="translate(455, 95)">
+              <circle cx="0" cy="0" r="12" fill="#dc2626" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowReturn)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">1</text>
+              <rect x="-175" y="-18" width="162" height="23" rx="5" fill="#ffffff" stroke="#dc2626" stroke-width="1.5" filter="url(#badgeShadowReturn)"/>
+              <text x="-94" y="-3" fill="#b91c1c" font-size="10.5" font-weight="900" text-anchor="middle">① 라비스타 후라노 힐즈 (출발)</text>
+            </g>
+
+            <!-- ② 닝구르 테라스 -->
+            <g transform="translate(445, 118)">
+              <circle cx="0" cy="0" r="10.5" fill="#2563eb" stroke="#fff" stroke-width="2" filter="url(#badgeShadowReturn)"/>
+              <text x="0" y="3.5" fill="#fff" font-size="10" font-weight="900" text-anchor="middle">2</text>
+              <rect x="-112" y="-8" width="100" height="21" rx="4" fill="#ffffff" stroke="#2563eb" stroke-width="1.3" filter="url(#badgeShadowReturn)"/>
+              <text x="-62" y="6" fill="#1d4ed8" font-size="10" font-weight="900" text-anchor="middle">② 닝구르 테라스</text>
+            </g>
+
+            <!-- ③ 후라노 치즈공방 -->
+            <g transform="translate(455, 142)">
+              <circle cx="0" cy="0" r="10.5" fill="#2563eb" stroke="#fff" stroke-width="2" filter="url(#badgeShadowReturn)"/>
+              <text x="0" y="3.5" fill="#fff" font-size="10" font-weight="900" text-anchor="middle">3</text>
+              <rect x="-115" y="-4" width="102" height="21" rx="4" fill="#ffffff" stroke="#2563eb" stroke-width="1.3" filter="url(#badgeShadowReturn)"/>
+              <text x="-64" y="10" fill="#1d4ed8" font-size="10" font-weight="900" text-anchor="middle">③ 후라노 치즈공방</text>
+            </g>
+
+            <!-- ④ 가나야마 댐 (Kanayama Dam) -->
+            <g transform="translate(468, 220)">
+              <circle cx="0" cy="0" r="11" fill="#0284c7" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowReturn)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">4</text>
+              <rect x="-122" y="-11" width="108" height="22" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="1.3" filter="url(#badgeShadowReturn)"/>
+              <text x="-68" y="4" fill="#0369a1" font-size="10.5" font-weight="900" text-anchor="middle">④ 가나야마 댐 (호수)</text>
+            </g>
+
+            <!-- ⑤ 루원토 레스토랑 (Luonto Restaurant) -->
+            <g transform="translate(365, 322)">
+              <circle cx="0" cy="0" r="11" fill="#059669" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowReturn)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">5</text>
+              <rect x="-45" y="14" width="128" height="22" rx="4" fill="#ffffff" stroke="#059669" stroke-width="1.3" filter="url(#badgeShadowReturn)"/>
+              <text x="19" y="29" fill="#065f46" font-size="10" font-weight="900" text-anchor="middle">⑤ 루원토 (수프카레 후보)</text>
+            </g>
+
+            <!-- ⑥ 라멘 노 타키 (ラーメンの瀧) -->
+            <g transform="translate(295, 342)">
+              <circle cx="0" cy="0" r="11" fill="#059669" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowReturn)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">6</text>
+              <rect x="-118" y="-26" width="112" height="22" rx="4" fill="#ffffff" stroke="#059669" stroke-width="1.3" filter="url(#badgeShadowReturn)"/>
+              <text x="-62" y="-11" fill="#065f46" font-size="10" font-weight="900" text-anchor="middle">⑥ 라멘 노 타키 (점심)</text>
+            </g>
+
+            <!-- ⑦ 스시로 치토세점 -->
+            <g transform="translate(238, 366)">
+              <circle cx="0" cy="0" r="11" fill="#059669" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowReturn)"/>
+              <text x="0" y="4" fill="#fff" font-size="10.5" font-weight="900" text-anchor="middle">7</text>
+              <rect x="-118" y="-12" width="104" height="22" rx="4" fill="#ffffff" stroke="#059669" stroke-width="1.3" filter="url(#badgeShadowReturn)"/>
+              <text x="-66" y="3" fill="#065f46" font-size="10" font-weight="900" text-anchor="middle">⑦ 스시로 치토세점</text>
+            </g>
+
+            <!-- ⑧ 도레모 르타오 (Doremo LeTAO) -->
+            <g transform="translate(250, 382)">
+              <circle cx="0" cy="0" r="10.5" fill="#7c3aed" stroke="#fff" stroke-width="2" filter="url(#badgeShadowReturn)"/>
+              <text x="0" y="3.5" fill="#fff" font-size="10" font-weight="900" text-anchor="middle">8</text>
+              <rect x="14" y="-16" width="108" height="21" rx="4" fill="#ffffff" stroke="#7c3aed" stroke-width="1.3" filter="url(#badgeShadowReturn)"/>
+              <text x="68" y="-2" fill="#6d28d9" font-size="10" font-weight="900" text-anchor="middle">⑧ 도레모 르타오</text>
+            </g>
+
+            <!-- ⑨ 니폰렌트카 신치토세 공항 영업소 (반납/도착) -->
+            <g transform="translate(268, 402)">
+              <circle cx="0" cy="0" r="12.5" fill="#d97706" stroke="#fff" stroke-width="2.5" filter="url(#badgeShadowReturn)"/>
+              <text x="0" y="4.5" fill="#fff" font-size="11" font-weight="900" text-anchor="middle">9</text>
+              <rect x="16" y="-8" width="185" height="24" rx="5" fill="#ffffff" stroke="#d97706" stroke-width="1.5" filter="url(#badgeShadowReturn)"/>
+              <text x="108" y="8" fill="#b45309" font-size="10.5" font-weight="900" text-anchor="middle">⑨ 니폰렌트카 신치토세 (반납/도착)</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- 9개 거점 상세 리스트 -->
+        <div class="space-y-2">
+          <div class="font-extrabold text-slate-800 text-xs flex items-center justify-between">
+            <span class="flex items-center gap-1"><span>🧭</span> 구글 맵 복귀 이동 코스 순서</span>
+            <span class="text-[10px] text-indigo-600 font-bold">총 9개 거점 • 147km</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-1.5 text-[11px]">
+            <div class="p-2.5 rounded-xl bg-rose-50/70 border border-rose-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-rose-600 text-white font-black text-[10px] flex items-center justify-center shrink-0">1</span>
+                <div>
+                  <div class="font-bold text-slate-800">도미인 프리미엄 라 비스타 후라노 힐스 (출발)</div>
+                  <div class="text-[10.5px] text-rose-700">오전 체크아웃 및 짐 적재 후 후라노 숲속 명소로 이동</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-rose-700 font-bold border border-rose-200">출발</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-indigo-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">2</span>
+                <div>
+                  <div class="font-bold text-slate-800">닝구르 테라스 (Ningle Terrace)</div>
+                  <div class="text-[10.5px] text-slate-500">침엽수림 숲속 통나무 공방 산책로 & 가족 사진 촬영</div>
+                </div>
+              </div>
+              <span class="text-[10px] text-slate-400">산책</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-indigo-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">3</span>
+                <div>
+                  <div class="font-bold text-slate-800">후라노 치즈공방 (Furano Cheese Factory)</div>
+                  <div class="text-[10.5px] text-slate-500">치즈 제조 견학 및 신선한 우유 아이스크림·치즈 시식</div>
+                </div>
+              </div>
+              <span class="text-[10px] text-slate-400">체험</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-sky-50/70 border border-sky-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-sky-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">4</span>
+                <div>
+                  <div class="font-bold text-slate-800">가나야마 댐 (Kanayama Dam / 미나미후라노)</div>
+                  <div class="text-[10.5px] text-sky-700">소라치강 상류의 고요한 호수와 가을 단풍 파노라마 뷰포인트</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-sky-700 font-bold border border-sky-200">단풍명소</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">5</span>
+                <div>
+                  <div class="font-bold text-slate-800">루원토 레스토랑 (Luonto / 오이와케)</div>
+                  <div class="text-[10.5px] text-emerald-700">[점심 후보 1] 구운 제철 채소가 듬뿍 올라간 통나무집 수프카레</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-emerald-700 font-bold border border-emerald-200">점심후보</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">6</span>
+                <div>
+                  <div class="font-bold text-slate-800">라멘 노 타키 (ラーメンの瀧)</div>
+                  <div class="text-[10.5px] text-emerald-700">[점심 후보 2] 30년 전통의 진한 사골 육수 야채 미소 라멘 노포</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-emerald-700 font-bold border border-emerald-200">점심후보</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">7</span>
+                <div>
+                  <div class="font-bold text-slate-800">스시로 치토세점 (スシロー 千歳店)</div>
+                  <div class="text-[10.5px] text-emerald-700">[점심 후보 3] 공항 인근 한국어 태블릿 주문이 편리한 인기 회전초밥</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-emerald-700 font-bold border border-emerald-200">점심후보</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-purple-50/70 border border-purple-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-purple-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">8</span>
+                <div>
+                  <div class="font-bold text-slate-800">도레모 르타오 (Doremo LeTAO)</div>
+                  <div class="text-[10.5px] text-purple-700">반납 전 마지막 티타임! 입에서 녹는 즉석 수플레 팬케이크 & 치즈케이크</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-white px-2 py-0.5 rounded-md text-purple-700 font-bold border border-purple-200">디저트</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-amber-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">9</span>
+                <div>
+                  <div class="font-bold text-slate-800">니폰렌트카 신치토세 공항 영업소 (16:00 반납)</div>
+                  <div class="text-[10.5px] text-amber-800">인근 주유소 만유(Full) 주유 후 반납 ➔ 공항 셔틀버스로 국제선 이동</div>
+                </div>
+              </div>
+              <span class="text-[10px] bg-amber-600 text-white px-2 py-0.5 rounded-md font-bold">반납완료</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 모달 하단 닫기 버튼 -->
+      <div class="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-end">
+        <button onclick="closeReturnRouteModal()" class="w-full py-2.5 text-xs bg-indigo-600 hover:bg-indigo-700 active:scale-95 font-bold rounded-xl text-white shadow transition">
+          닫기
         </button>
       </div>
     </div>
@@ -1815,6 +2295,24 @@
       if (modal) modal.classList.add('hidden');
     }
 
+    function openFuranoTransferRouteModal() {
+      const modal = document.getElementById('furanoTransferRouteModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+    function closeFuranoTransferRouteModal() {
+      const modal = document.getElementById('furanoTransferRouteModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function openReturnRouteModal() {
+      const modal = document.getElementById('returnRouteModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+    function closeReturnRouteModal() {
+      const modal = document.getElementById('returnRouteModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
     function openFuranoDriveRouteModal() {
       const modal = document.getElementById('furanoDriveRouteModal');
       if (modal) modal.classList.remove('hidden');
@@ -2530,6 +3028,22 @@
           mapUrl: 'https://www.google.com/maps/search/?q=Kitakaro+Sunagawa+Main+Shop' 
         },
         { 
+          id: 'spot_d3_mikasa', 
+          category: 'spot', 
+          name: '미카사 철도촌 (미카사 철도 기념관)', 
+          reason: '실제로 운행하던 증기기관차와 철도 차량이 전시되어 있으며, 300m 코스를 오가는 증기기관차 체험이 가능해 철도 팬들에게 인기가 높습니다.', 
+          family: '삿포로에서 후라노로 이동하는 도오 자동차도 미카사 IC 인근에 위치해 있어 아이와 함께 색다른 기차 체험을 즐기며 쉬어가기 좋습니다.', 
+          mapUrl: 'https://www.google.com/maps/search/?q=Mikasa+Railway+Village+Hokkaido' 
+        },
+        { 
+          id: 'spot_d3_katsurazawa', 
+          category: 'spot', 
+          name: '가쓰라자와호 (桂沢湖)', 
+          reason: '인조 호수로 가을철 화려한 단풍 풍경을 감상하기 좋습니다.', 
+          family: '미카사에서 산단 폭포·후라노 방면으로 이어지는 국도 452호선 드라이브 코스에 위치해 차창 밖으로 아름다운 호반 단풍을 감상할 수 있습니다.', 
+          mapUrl: 'https://www.google.com/maps/search/?q=Katsurazawa+Lake+Mikasa+Hokkaido' 
+        },
+        { 
           id: 'spot_d3_sandan', 
           category: 'spot', 
           name: '산단 폭포 (三段滝 / 산단타키)', 
@@ -2754,6 +3268,48 @@
       dynamicSpots = initialDefaultSpots;
       localStorage.setItem('sapporo_dynamic_spots_v22', JSON.stringify(dynamicSpots));
     }
+
+    function ensureNewDay3Spots(spotsObj) {
+      if (!spotsObj || !spotsObj['day-3']) return false;
+      const day3List = spotsObj['day-3'];
+      const newSpots = [
+        { 
+          id: 'spot_d3_mikasa', 
+          category: 'spot', 
+          name: '미카사 철도촌 (미카사 철도 기념관)', 
+          reason: '실제로 운행하던 증기기관차와 철도 차량이 전시되어 있으며, 300m 코스를 오가는 증기기관차 체험이 가능해 철도 팬들에게 인기가 높습니다.', 
+          family: '삿포로에서 후라노로 이동하는 경로상에 위치해 있어 아들과 함께 실물 증기기관차 관람 및 이색 체험을 즐기기 좋습니다.', 
+          mapUrl: 'https://www.google.com/maps/search/?q=Mikasa+Railway+Village+Hokkaido' 
+        },
+        { 
+          id: 'spot_d3_katsurazawa', 
+          category: 'spot', 
+          name: '가쓰라자와호 (桂沢湖)', 
+          reason: '인조 호수로 가을철 화려한 단풍 풍경을 감상하기 좋습니다.', 
+          family: '미카사에서 후라노 방면(국도 452호선)으로 넘어가는 길목에 자리 잡고 있어, 드라이브하며 호수 주변의 고운 가을 단풍을 여유롭게 감상할 수 있습니다.', 
+          mapUrl: 'https://www.google.com/maps/search/?q=Katsurazawa+Lake+Mikasa+Hokkaido' 
+        }
+      ];
+      let added = false;
+      newSpots.forEach(ns => {
+        if (!day3List.some(s => s.id === ns.id || s.name.includes(ns.name.split(' ')[0]))) {
+          // 산단 폭포 앞이나 리스트 중간에 자연스럽게 배치
+          const sandanIdx = day3List.findIndex(s => s.id === 'spot_d3_sandan');
+          if (sandanIdx !== -1) {
+            day3List.splice(sandanIdx, 0, ns);
+          } else {
+            day3List.push(ns);
+          }
+          added = true;
+        }
+      });
+      if (added) {
+        localStorage.setItem('sapporo_dynamic_spots_v22', JSON.stringify(spotsObj));
+      }
+      return added;
+    }
+
+    ensureNewDay3Spots(dynamicSpots);
 
     function saveNewSpot() {
       const dayKey = document.getElementById('modalDate').value;
@@ -3426,8 +3982,12 @@
 
             if (docId === 'spots' && data.spotsByDay) {
               dynamicSpots = data.spotsByDay;
+              const wasUpdated = ensureNewDay3Spots(dynamicSpots);
               localStorage.setItem('sapporo_dynamic_spots_v22', JSON.stringify(dynamicSpots));
               renderDynamicSpots();
+              if (wasUpdated) {
+                pushDataToCloud('spots', { spotsByDay: dynamicSpots });
+              }
             } else if (docId === 'checklist' && data.list) {
               userChecklist = data.list;
               localStorage.setItem('sapporo_user_checklist', JSON.stringify(userChecklist));
@@ -3520,6 +4080,10 @@
     window.closeEmergencyModal = closeEmergencyModal;
     window.openPorocleRouteModal = openPorocleRouteModal;
     window.closePorocleRouteModal = closePorocleRouteModal;
+    window.openFuranoTransferRouteModal = openFuranoTransferRouteModal;
+    window.closeFuranoTransferRouteModal = closeFuranoTransferRouteModal;
+    window.openReturnRouteModal = openReturnRouteModal;
+    window.closeReturnRouteModal = closeReturnRouteModal;
     window.openFuranoDriveRouteModal = openFuranoDriveRouteModal;
     window.closeFuranoDriveRouteModal = closeFuranoDriveRouteModal;
     window.openPorocleNoticeModal = openPorocleNoticeModal;
