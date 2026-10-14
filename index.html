@@ -88,16 +88,19 @@
       </div>
     </div>
 
-    <!-- 메인 탭바 (글자 크기 확대: text-sm sm:text-base) -->
-    <nav class="bg-white border-b border-slate-200 flex text-sm sm:text-base font-bold">
-      <button onclick="switchTab('itinerary')" id="tab-itinerary" class="flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black text-sm sm:text-base transition-colors">
+    <!-- 메인 탭바 (일정, 체크리스트, Budget, 메모) -->
+    <nav class="bg-white border-b border-slate-200 flex text-xs sm:text-sm md:text-base font-bold">
+      <button onclick="switchTab('itinerary')" id="tab-itinerary" class="flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black transition-colors">
         🗓️ 일정
       </button>
-      <button onclick="switchTab('checklist')" id="tab-checklist" class="flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent text-sm sm:text-base font-bold transition-colors">
-        📋 체크리스트
+      <button onclick="switchTab('checklist')" id="tab-checklist" class="flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent font-bold transition-colors">
+        📋 체크
       </button>
-      <button onclick="switchTab('budget')" id="tab-budget" class="flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent text-sm sm:text-base font-bold transition-colors">
-        💰 Budget (예산)
+      <button onclick="switchTab('budget')" id="tab-budget" class="flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent font-bold transition-colors">
+        💰 Budget
+      </button>
+      <button onclick="switchTab('memo')" id="tab-memo" class="flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent font-bold transition-colors">
+        📝 메모
       </button>
     </nav>
 
@@ -471,6 +474,22 @@
       </div>
 
       <div id="expenseListContainer" class="space-y-3"></div>
+    </section>
+
+    <!-- [섹션 4] 메모 탭 -->
+    <section id="memoSection" class="p-4 space-y-4 max-w-lg mx-auto hidden">
+      <!-- 메모 전용 액션 배너 (+ 메모 추가 버튼) -->
+      <div class="flex justify-between items-center bg-white px-3.5 py-2.5 rounded-2xl border border-slate-200 shadow-xs">
+        <div class="flex items-center gap-1.5 text-xs text-slate-600 font-bold">
+          <span>📝</span><span>가족 공유 자유 메모</span>
+        </div>
+        <button onclick="openAddMemoModal()" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-black rounded-xl shadow-xs transition flex items-center gap-1">
+          <span>+</span><span>메모 추가</span>
+        </button>
+      </div>
+
+      <!-- 메모 목록 (번호와 제목만 깔끔하게 표시) -->
+      <div id="memoListContainer" class="space-y-2.5"></div>
     </section>
   </div>
 
@@ -987,6 +1006,58 @@
     </div>
   </div>
 
+  <!-- 📝 새 메모 작성 모달 -->
+  <div id="addMemoModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm transition-opacity duration-200">
+    <div class="bg-white rounded-3xl p-5 w-full max-w-sm space-y-4 shadow-2xl border border-slate-100">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <h3 class="font-extrabold text-base text-slate-800 flex items-center gap-1.5">
+          <span>📝</span><span>새 메모 작성</span>
+        </h3>
+        <button onclick="closeAddMemoModal()" class="text-slate-400 hover:text-slate-600 p-1 text-base font-bold">✕</button>
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 mb-1">메모 제목</label>
+        <input type="text" id="memoTitleInput" placeholder="예: 쇼핑 목록, 선물 살 것, 주의사항" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm font-bold bg-slate-50 focus:bg-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 mb-1">메모 내용</label>
+        <textarea id="memoContentInput" rows="5" placeholder="자유롭게 상세 내용을 입력하세요..." class="w-full border border-slate-300 rounded-xl p-2.5 text-xs text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"></textarea>
+      </div>
+      <div class="flex space-x-2 pt-1">
+        <button onclick="closeAddMemoModal()" class="flex-1 py-2.5 text-xs bg-slate-100 hover:bg-slate-200 font-bold rounded-xl text-slate-600 transition">취소</button>
+        <button onclick="saveNewMemo()" class="flex-1 py-2.5 text-xs bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-black rounded-xl shadow-xs transition">저장하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📖 메모 상세 보기 모달 -->
+  <div id="memoDetailModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm transition-opacity duration-200">
+    <div class="bg-white rounded-3xl p-5 w-full max-w-sm space-y-4 shadow-2xl border border-slate-100 max-h-[85vh] flex flex-col">
+      <div class="flex items-start justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span id="detailMemoNumberBadge" class="w-6 h-6 rounded-full bg-indigo-600 text-white font-black text-xs flex items-center justify-center shrink-0">1</span>
+          <div>
+            <span class="text-[10px] font-bold text-indigo-600 block">메모 상세</span>
+            <h3 id="detailMemoTitle" class="font-extrabold text-base text-slate-900 leading-snug break-words">제목</h3>
+          </div>
+        </div>
+        <button onclick="closeMemoDetailModal()" class="text-slate-400 hover:text-slate-600 p-1 text-lg font-bold leading-none">✕</button>
+      </div>
+
+      <div class="space-y-3 overflow-y-auto flex-1 pr-1 text-xs">
+        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+          <p id="detailMemoContent" class="text-slate-800 leading-relaxed whitespace-pre-wrap font-medium break-words"></p>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t border-slate-100 flex gap-2">
+        <button onclick="closeMemoDetailModal()" class="w-full py-2.5 text-xs bg-slate-800 hover:bg-slate-900 active:scale-95 text-white font-bold rounded-xl transition">
+          확인
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- 갤러리 모달 -->
   <div id="photoGalleryModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-3 hidden">
     <div class="bg-white rounded-2xl w-full max-w-md max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
@@ -1357,6 +1428,13 @@
           typeBadge.className = 'text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800';
         }
         if (catHint) catHint.innerText = '체크리스트 준비물';
+      } else if (type === 'memo') {
+        if (iconBox) iconBox.innerHTML = '📝';
+        if (typeBadge) {
+          typeBadge.innerText = '메모 삭제';
+          typeBadge.className = 'text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800';
+        }
+        if (catHint) catHint.innerText = '가족 공유 메모';
       } else if (type === 'expense') {
         if (iconBox) iconBox.innerHTML = '💰';
         if (typeBadge) {
@@ -1635,6 +1713,133 @@
         pushDataToCloud('budget', { items: budgetList });
         showToast('지출 내역이 삭제되었습니다.');
       }, { type: 'expense' });
+    }
+
+    /* ========================================================
+       3-1. 자유 메모 관리 로직
+       ======================================================== */
+    const initialDefaultMemos = [
+      {
+        id: 'memo_1',
+        title: '신치토세 공항 면세점 & 삿포로 쇼핑 리스트',
+        content: '1. 시로이 코이비토 (공항 면세점)\n2. 롯카테이 마루세이 버터샌드 (본점/공항)\n3. 르타오 더블 프로마쥬 치즈케이크\n4. 돈키호테: 동전파스, 카베진, 샤론파스\n5. 삿포로 클래식 맥주 캔 세트'
+      },
+      {
+        id: 'memo_2',
+        title: '홋카이도 렌터카 안전 운전 핵심 수칙',
+        content: '1. 좌측통행: 운전석이 오른쪽이므로 항상 중앙선을 내 오른쪽에 두기!\n2. 우회전 시 크게 돌고 맞은편 직진 차량 우선\n3. 철길 건널목 통과 전 일시정지 필수\n4. 렌터카 반납 전 5km 이내 주유소에서 만유(Full) 주유 후 영수증 챙기기'
+      }
+    ];
+
+    let memoList = JSON.parse(localStorage.getItem('sapporo_user_memos')) || initialDefaultMemos;
+
+    function renderMemos() {
+      const container = document.getElementById('memoListContainer');
+      if (!container) return;
+
+      if (memoList.length === 0) {
+        container.innerHTML = `
+          <div class="py-12 text-center text-xs text-slate-400 bg-white rounded-2xl border border-dashed border-slate-200">
+            등록된 메모가 없습니다.<br>상단의 '+ 메모 추가' 버튼을 눌러 메모를 남겨보세요!
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = memoList.map((m, idx) => {
+        return `
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-2xs hover:border-indigo-300 transition flex items-center justify-between gap-2.5">
+            <button onclick="openMemoDetailModal('${m.id}')" class="flex items-center gap-3 flex-1 min-w-0 text-left group">
+              <span class="w-6 h-6 rounded-full bg-indigo-50 group-hover:bg-indigo-600 text-indigo-700 group-hover:text-white font-black text-xs flex items-center justify-center shrink-0 transition">
+                ${idx + 1}
+              </span>
+              <span class="text-sm font-extrabold text-slate-800 group-hover:text-indigo-600 transition truncate">
+                ${m.title}
+              </span>
+            </button>
+            <div class="flex items-center gap-1 shrink-0">
+              <button onclick="openMemoDetailModal('${m.id}')" class="px-2 py-1 text-xs bg-slate-50 hover:bg-indigo-50 text-slate-600 hover:text-indigo-700 rounded-lg font-bold transition">
+                보기
+              </button>
+              <button onclick="promptDeleteMemo('${m.id}', '${m.title.replace(/'/g, "\\'")}')" class="text-slate-400 hover:text-rose-600 hover:bg-rose-50 px-2 py-1 rounded-lg text-xs font-bold transition" title="삭제">
+                ✕
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openAddMemoModal() {
+      const modal = document.getElementById('addMemoModal');
+      const titleInput = document.getElementById('memoTitleInput');
+      const contentInput = document.getElementById('memoContentInput');
+      if (titleInput) titleInput.value = '';
+      if (contentInput) contentInput.value = '';
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeAddMemoModal() {
+      const modal = document.getElementById('addMemoModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function saveNewMemo() {
+      const titleInput = document.getElementById('memoTitleInput');
+      const contentInput = document.getElementById('memoContentInput');
+
+      const title = titleInput ? titleInput.value.trim() : '';
+      const content = contentInput ? contentInput.value.trim() : '';
+
+      if (!title) {
+        showToast('메모 제목을 입력해주세요.');
+        return;
+      }
+
+      const newMemo = {
+        id: 'memo_' + Date.now(),
+        title,
+        content: content || '내용 없음'
+      };
+
+      memoList.push(newMemo);
+      localStorage.setItem('sapporo_user_memos', JSON.stringify(memoList));
+      renderMemos();
+      pushDataToCloud('memos', { list: memoList });
+      closeAddMemoModal();
+      showToast('새 메모가 추가되었습니다.');
+    }
+
+    function openMemoDetailModal(memoId) {
+      const memo = memoList.find(m => m.id === memoId);
+      if (!memo) return;
+
+      const idx = memoList.findIndex(m => m.id === memoId);
+      const numBadge = document.getElementById('detailMemoNumberBadge');
+      const titleEl = document.getElementById('detailMemoTitle');
+      const contentEl = document.getElementById('detailMemoContent');
+
+      if (numBadge) numBadge.innerText = (idx + 1).toString();
+      if (titleEl) titleEl.innerText = memo.title;
+      if (contentEl) contentEl.innerText = memo.content;
+
+      const modal = document.getElementById('memoDetailModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeMemoDetailModal() {
+      const modal = document.getElementById('memoDetailModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function promptDeleteMemo(memoId, memoTitle) {
+      openConfirmModal(memoTitle, "이 메모를 삭제하시겠습니까?", () => {
+        memoList = memoList.filter(m => m.id !== memoId);
+        localStorage.setItem('sapporo_user_memos', JSON.stringify(memoList));
+        renderMemos();
+        pushDataToCloud('memos', { list: memoList });
+        showToast('메모가 삭제되었습니다.');
+      }, { type: 'memo' });
     }
 
     /* ========================================================
@@ -2486,39 +2691,48 @@
       const secItin = document.getElementById('itinerarySection');
       const secCheck = document.getElementById('checklistSection');
       const secBudget = document.getElementById('budgetSection');
+      const secMemo = document.getElementById('memoSection');
       const stickyDayBar = document.getElementById('stickyDayBar');
 
       const tabItinBtn = document.getElementById('tab-itinerary');
       const tabCheckBtn = document.getElementById('tab-checklist');
       const tabBudgetBtn = document.getElementById('tab-budget');
+      const tabMemoBtn = document.getElementById('tab-memo');
 
       if (secItin) secItin.classList.add('hidden');
       if (secCheck) secCheck.classList.add('hidden');
       if (secBudget) secBudget.classList.add('hidden');
+      if (secMemo) secMemo.classList.add('hidden');
 
-      // 탭 기본 비활성화 스타일 (text-sm sm:text-base 크기 유지)
-      [tabItinBtn, tabCheckBtn, tabBudgetBtn].forEach(b => {
-        if (b) b.className = "flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent text-sm sm:text-base font-bold transition-colors";
+      // 탭 기본 비활성화 스타일
+      [tabItinBtn, tabCheckBtn, tabBudgetBtn, tabMemoBtn].forEach(b => {
+        if (b) b.className = "flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent font-bold transition-colors";
       });
 
       if (tab === 'itinerary') {
         if (secItin) secItin.classList.remove('hidden');
-        if (tabItinBtn) tabItinBtn.className = "flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black text-sm sm:text-base transition-colors";
+        if (tabItinBtn) tabItinBtn.className = "flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black transition-colors";
         if (stickyDayBar) stickyDayBar.classList.remove('hidden');
         document.getElementById('contentContainer').className = "pt-[148px]";
       } else if (tab === 'checklist') {
         if (secCheck) secCheck.classList.remove('hidden');
-        if (tabCheckBtn) tabCheckBtn.className = "flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black text-sm sm:text-base transition-colors";
+        if (tabCheckBtn) tabCheckBtn.className = "flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black transition-colors";
         if (stickyDayBar) stickyDayBar.classList.add('hidden');
         document.getElementById('contentContainer').className = "pt-[98px]";
         renderChecklist();
       } else if (tab === 'budget') {
         if (secBudget) secBudget.classList.remove('hidden');
-        if (tabBudgetBtn) tabBudgetBtn.className = "flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black text-sm sm:text-base transition-colors";
+        if (tabBudgetBtn) tabBudgetBtn.className = "flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black transition-colors";
         if (stickyDayBar) stickyDayBar.classList.add('hidden');
         document.getElementById('contentContainer').className = "pt-[98px]";
         renderBudget();
         loadBalances();
+      } else if (tab === 'memo') {
+        if (secMemo) secMemo.classList.remove('hidden');
+        if (tabMemoBtn) tabMemoBtn.className = "flex-1 py-3 text-center text-indigo-700 border-b-2 border-indigo-700 font-black transition-colors";
+        if (stickyDayBar) stickyDayBar.classList.add('hidden');
+        document.getElementById('contentContainer').className = "pt-[98px]";
+        renderMemos();
       }
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
@@ -2722,6 +2936,10 @@
               budgetList = data.items;
               localStorage.setItem('sapporo_budget_items', JSON.stringify(budgetList));
               renderBudget();
+            } else if (docId === 'memos' && data.list) {
+              memoList = data.list;
+              localStorage.setItem('sapporo_user_memos', JSON.stringify(memoList));
+              renderMemos();
             } else if (docId === 'balances') {
               const elEric = document.getElementById('balanceEric');
               const elSua = document.getElementById('balanceSua');
@@ -2772,6 +2990,7 @@
       const savedChecked = JSON.parse(localStorage.getItem('sapporo_checked_items')) || {};
       pushDataToCloud('checked_items', { checked: savedChecked });
       pushDataToCloud('budget', { items: budgetList });
+      pushDataToCloud('memos', { list: memoList });
       const balances = JSON.parse(localStorage.getItem('sapporo_manual_balances')) || { eric: '', sua: '', cash: '' };
       pushDataToCloud('balances', balances);
     }
@@ -2783,6 +3002,13 @@
     window.closeAddCheckModal = closeAddCheckModal;
     window.openAddExpenseModal = openAddExpenseModal;
     window.closeAddExpenseModal = closeAddExpenseModal;
+    window.openAddMemoModal = openAddMemoModal;
+    window.closeAddMemoModal = closeAddMemoModal;
+    window.openMemoDetailModal = openMemoDetailModal;
+    window.closeMemoDetailModal = closeMemoDetailModal;
+    window.saveNewMemo = saveNewMemo;
+    window.promptDeleteMemo = promptDeleteMemo;
+    window.renderMemos = renderMemos;
     window.openEmergencyModal = openEmergencyModal;
     window.closeEmergencyModal = closeEmergencyModal;
     window.openPorocleRouteModal = openPorocleRouteModal;
@@ -2816,6 +3042,7 @@
       renderChecklist();
       renderBudget();
       renderDynamicSpots();
+      renderMemos();
       loadBalances();
       const p1 = document.getElementById('pill-day-1');
       if (p1) selectDay('day-1', p1);
