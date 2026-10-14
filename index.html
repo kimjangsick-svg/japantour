@@ -29,29 +29,6 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     
-    /* 인앱 론치 스플래시 화면 애니메이션 */
-    #appSplashScreen {
-      transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.65s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    #appSplashScreen.splash-hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-    @keyframes starPulseGlow {
-      0%, 100% {
-        transform: scale(1);
-        filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.45));
-      }
-      50% {
-        transform: scale(1.05);
-        filter: drop-shadow(0 0 24px rgba(245, 158, 11, 0.85));
-      }
-    }
-    .splash-star-glow {
-      animation: starPulseGlow 2.2s infinite ease-in-out;
-    }
-    
     /* 롱프레스 및 드래그 앤 드롭 전용 스타일 */
     .spot-card-item {
       touch-action: pan-y;
@@ -80,57 +57,6 @@
   </style>
 </head>
 <body class="bg-slate-100 text-slate-800 pb-28">
-
-  <!-- 🌟 감성 삿포로 스타 인앱 론치 스플래시(Splash) 화면 -->
-  <div id="appSplashScreen" class="fixed inset-0 z-100 bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 flex flex-col items-center justify-between p-8 select-none overflow-hidden">
-    <!-- 배경 은은한 별빛 장식 원형 그라디언트 -->
-    <div class="absolute -top-32 -left-32 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-32 -right-32 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
-    <!-- 상단 여백 보정 -->
-    <div class="h-6"></div>
-
-    <!-- 중앙 메인 삿포로 스타 심볼 & 타이틀 -->
-    <div class="flex flex-col items-center text-center space-y-6 max-w-xs z-10">
-      <!-- 삿포로 골드 스타 원형 로고 배지 -->
-      <div class="relative flex items-center justify-center">
-        <div class="w-36 h-36 rounded-full bg-slate-900/90 border-2 border-amber-400/40 shadow-2xl flex items-center justify-center p-3 splash-star-glow">
-          <svg viewBox="0 0 512 512" class="w-full h-full">
-            <circle cx="256" cy="205" r="145" fill="#050814"/>
-            <polygon points="256,95 280,172 358,174 296,218 318,293 256,248 194,293 216,218 154,174 232,172" fill="#f59e0b" stroke="#fbbf24" stroke-width="3" stroke-linejoin="round"/>
-            <text x="256" y="440" font-family="'Times New Roman', Times, serif" font-size="76" font-weight="900" text-anchor="middle" fill="#f8fafc" letter-spacing="4">SAPPORO</text>
-          </svg>
-        </div>
-      </div>
-
-      <!-- 영문 & 한글 메인 브랜딩 타이틀 -->
-      <div class="space-y-1.5">
-        <span class="text-[11px] font-black uppercase tracking-[0.3em] text-amber-400/90 block">Hokkaido Autumn 2026</span>
-        <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow-md">
-          U.Sung Family Trip
-        </h1>
-        <p class="text-xs text-indigo-200/80 font-medium">
-          26년 삿포로 U.Sung Family 여행 플래너
-        </p>
-      </div>
-
-      <!-- 로딩 인디케이터 바 -->
-      <div class="w-44 pt-3 space-y-2">
-        <div class="h-1.5 w-full bg-slate-800/90 rounded-full overflow-hidden p-0.5 border border-indigo-500/30">
-          <div id="splashProgressBar" class="h-full bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 rounded-full w-0 transition-all duration-700 ease-out"></div>
-        </div>
-        <p id="splashStatusText" class="text-[10px] text-indigo-300/70 font-semibold tracking-wider">
-          가족 여행 일정 및 클라우드 연결 중...
-        </p>
-      </div>
-    </div>
-
-    <!-- 하단 날짜 & 카피라이트 -->
-    <div class="text-center text-[10.5px] text-indigo-300/60 font-semibold space-y-0.5 z-10">
-      <p class="text-amber-400/80 font-bold">🍁 2026. 10. 15 ~ 10. 19</p>
-      <p>Sapporo • Otaru • Biei • Furano</p>
-    </div>
-  </div>
 
   <!-- 1. 최상단 완전 틀 고정 헤더 -->
   <header id="fixedTopHeader" class="fixed top-0 left-0 right-0 z-50 bg-indigo-700 shadow-md">
@@ -3444,27 +3370,7 @@
       showToast('26년 삿포로 여행 앱이 정상 설치되었습니다!');
     });
 
-    /* 스플래시 화면 페이드아웃 제어 로직 */
-    function dismissSplashScreen() {
-      const splash = document.getElementById('appSplashScreen');
-      const pBar = document.getElementById('splashProgressBar');
-      const pText = document.getElementById('splashStatusText');
-      if (!splash) return;
-
-      if (pBar) pBar.style.width = '100%';
-      if (pText) pText.innerText = '준비 완료! 여행 화면으로 이동합니다';
-
-      setTimeout(() => {
-        splash.classList.add('splash-hidden');
-      }, 550);
-    }
-
     window.addEventListener('DOMContentLoaded', () => {
-      const pBar = document.getElementById('splashProgressBar');
-      if (pBar) {
-        setTimeout(() => { pBar.style.width = '65%'; }, 150);
-      }
-
       renderChecklist();
       renderBudget();
       renderDynamicSpots();
@@ -3476,9 +3382,6 @@
       if (window._firebaseModules) {
         initCloudRealtimeSync();
       }
-
-      // 데이터 렌더링 및 클라우드 초기화 후 스플래시 부드럽게 닫기
-      setTimeout(dismissSplashScreen, 950);
     });
   </script>
 </body>
