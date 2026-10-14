@@ -13,12 +13,103 @@
   <meta name="application-name" content="26년 삿포로 U.Sung Family" />
   <meta name="theme-color" content="#4338ca" />
   
-  <!-- 삿포로 블랙 원형 + 골드 스타 + SAPPORO 텍스트 정밀 벡터 앱 아이콘 -->
-  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23ffffff'/%3E%3Ccircle cx='256' cy='210' r='145' fill='%23000000'/%3E%3Cpolygon points='256,105 280,178 355,180 295,223 316,295 256,252 196,295 217,223 157,180 232,178' fill='%23f59e0b'/%3E%3Ctext x='256' y='440' font-family='serif,Arial' font-size='74' font-weight='900' text-anchor='middle' fill='%23000000' letter-spacing='4'%3ESAPPORO%3C/text%3E%3C/svg%3E" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23ffffff'/%3E%3Ccircle cx='256' cy='210' r='145' fill='%23000000'/%3E%3Cpolygon points='256,105 280,178 355,180 295,223 316,295 256,252 196,295 217,223 157,180 232,178' fill='%23f59e0b'/%3E%3Ctext x='256' y='440' font-family='serif,Arial' font-size='74' font-weight='900' text-anchor='middle' fill='%23000000' letter-spacing='4'%3ESAPPORO%3C/text%3E%3C/svg%3E" />
-  <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23ffffff'/%3E%3Ccircle cx='256' cy='210' r='145' fill='%23000000'/%3E%3Cpolygon points='256,105 280,178 355,180 295,223 316,295 256,252 196,295 217,223 157,180 232,178' fill='%23f59e0b'/%3E%3Ctext x='256' y='440' font-family='serif,Arial' font-size='74' font-weight='900' text-anchor='middle' fill='%23000000' letter-spacing='4'%3ESAPPORO%3C/text%3E%3C/svg%3E" />
+  <!-- 삿포로 블랙 원형 + 골드 스타 심볼 아이콘 (유첨 이미지 100% 동일 디자인 & PNG 자동 변환 연동) -->
+  <link id="appleTouchIconLink" rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23ffffff'/%3E%3Ccircle cx='256' cy='256' r='225' fill='%23000000'/%3E%3Cpolygon points='256,82 297,202 424,204 323,279 360,400 256,326 152,400 189,279 88,204 215,202' fill='%23f59e0b'/%3E%3C/svg%3E" />
+  <link id="faviconLink" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23ffffff'/%3E%3Ccircle cx='256' cy='256' r='225' fill='%23000000'/%3E%3Cpolygon points='256,82 297,202 424,204 323,279 360,400 256,326 152,400 189,279 88,204 215,202' fill='%23f59e0b'/%3E%3C/svg%3E" />
+  <link id="shortcutIconLink" rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23ffffff'/%3E%3Ccircle cx='256' cy='256' r='225' fill='%23000000'/%3E%3Cpolygon points='256,82 297,202 424,204 323,279 360,400 256,326 152,400 189,279 88,204 215,202' fill='%23f59e0b'/%3E%3C/svg%3E" />
+  <link id="pwaManifestLink" rel="manifest" href="" />
 
-  <link rel="manifest" href="/manifest.json" />
+  <script>
+    // 안드로이드 크롬(PWA)에서 'V' 기본 아이콘 대신 유첨하신 블랙 원형 + 골드 스타 이미지를 100% PNG로 렌더링해 주입하는 초기화 스크립트
+    (function setupExactSapporoStarPwaIcon() {
+      try {
+        function createStarPngDataUrl(size) {
+          const canvas = document.createElement('canvas');
+          canvas.width = size;
+          canvas.height = size;
+          const ctx = canvas.getContext('2d');
+          const s = size / 512;
+          ctx.scale(s, s);
+
+          // 1. 바탕 흰색 배경 (홈 화면에서 깔끔하게 보이도록 처리)
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, 512, 512);
+
+          // 2. 유첨 이미지와 동일한 정중앙 꽉 찬 블랙 서클
+          ctx.fillStyle = '#000000';
+          ctx.beginPath();
+          ctx.arc(256, 256, 232, 0, Math.PI * 2);
+          ctx.fill();
+
+          // 3. 유첨 이미지와 동일한 골드 스타 (#f59e0b) 및 미세 블랙 테두리
+          ctx.fillStyle = '#f59e0b';
+          ctx.strokeStyle = '#111111';
+          ctx.lineWidth = 4;
+          ctx.lineJoin = 'miter';
+          const starPoints = [
+            [256, 78],
+            [298, 200],
+            [426, 202],
+            [323, 278],
+            [361, 402],
+            [256, 327],
+            [151, 402],
+            [189, 278],
+            [86, 202],
+            [214, 200]
+          ];
+          ctx.beginPath();
+          ctx.moveTo(starPoints[0][0], starPoints[0][1]);
+          for (let i = 1; i < starPoints.length; i++) {
+            ctx.lineTo(starPoints[i][0], starPoints[i][1]);
+          }
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+
+          return canvas.toDataURL('image/png');
+        }
+
+        const png192 = createStarPngDataUrl(192);
+        const png512 = createStarPngDataUrl(512);
+
+        const appleLink = document.getElementById('appleTouchIconLink');
+        const favLink = document.getElementById('faviconLink');
+        const shortLink = document.getElementById('shortcutIconLink');
+        if (appleLink) appleLink.href = png192;
+        if (favLink) {
+          favLink.type = 'image/png';
+          favLink.href = png192;
+        }
+        if (shortLink) {
+          shortLink.type = 'image/png';
+          shortLink.href = png192;
+        }
+
+        // 자체 완결형 인라인 PWA 매니페스트 생성 (외부 /manifest.json 404 에러로 인해 V 로고가 뜨는 현상 원천 차단)
+        const manifestObj = {
+          name: "26년 삿포로 U.Sung Family",
+          short_name: "삿포로여행",
+          description: "26년 삿포로 U.Sung Family 가족 여행 플래너",
+          start_url: "./",
+          display: "standalone",
+          background_color: "#ffffff",
+          theme_color: "#4338ca",
+          icons: [
+            { src: png192, sizes: "192x192", type: "image/png", purpose: "any" },
+            { src: png512, sizes: "512x512", type: "image/png", purpose: "any" }
+          ]
+        };
+
+        const manifestJson = JSON.stringify(manifestObj);
+        const manifestDataUrl = "data:application/manifest+json;charset=utf-8," + encodeURIComponent(manifestJson);
+        const manifestLink = document.getElementById('pwaManifestLink');
+        if (manifestLink) manifestLink.href = manifestDataUrl;
+      } catch (e) {
+        console.error("PWA Icon setup error:", e);
+      }
+    })();
+  </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
